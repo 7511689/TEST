@@ -258,8 +258,8 @@ window.playOneClick = function(platform) {
     const targetUrl = isMobile ? links[platform].mobile : links[platform].pc;
     
     if(targetUrl) {
-        if (targetUrl.startsWith('http')) {
-            // PC 웹 플레이어 등 일반 주소는 팝업창(새 탭)으로 열기
+        if (!isMobile && targetUrl.startsWith('http')) {
+            // PC 웹 플레이어는 팝업창(새 탭)으로 열기
             const a = document.createElement('a');
             a.href = targetUrl;
             a.target = '_blank';
@@ -267,7 +267,8 @@ window.playOneClick = function(platform) {
             a.click();
             document.body.removeChild(a);
         } else {
-            // 모바일 딥링크(앱 실행)는 현재 창에서 그대로 연결 (빈 탭 찌꺼기 방지)
+            // 모바일은 딥링크(앱 실행) 처리를 위해 현재 창에서 그대로 연결
+            // (뮤직웨이브 등 웹 주소를 쓰는 경우에도 모바일에서는 앱으로 자동 연결되도록 유도)
             window.location.href = targetUrl;
         }
     } else {
