@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLARE U - 팬덤 서포트 웹사이트</title>
+    <title>FLARE U</title>
     <meta name="description" content="FLARE U 음원총공팀 웹사이트입니다.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
         <div class="header-container">
-            <div class="logo">FLARE U</div>
-            <nav class="nav-menu">
+            <div class="logo" onclick="document.querySelector('[data-target=\'home\']').click()">FLARE U</div>
+            
+            <div class="menu-toggle" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
                 <a href="#" data-target="home" class="nav-link active">홈</a>
                 <a href="#" data-target="oneclick" class="nav-link">원클릭 스트리밍</a>
                 <a href="#" data-target="streaming" class="nav-link">스트리밍 가이드</a>
@@ -38,6 +45,9 @@
             </div>
         </div>
     </footer>
+
+    <!-- 이미지 라이트박스 영역 -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()"></div>
 
     <script src="app.js"></script>
 </body>

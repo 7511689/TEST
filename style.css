@@ -58,11 +58,12 @@ body {
 .nav-link {
     text-decoration: none;
     color: var(--text-sub);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     position: relative;
     padding: 24px 0;
     transition: color 0.2s;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -162,6 +163,28 @@ body {
     font-weight: 700;
     font-size: 20px;
     transition: background-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+.placeholder-box:active {
+    transform: scale(0.98);
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+.lightbox.active {
+    opacity: 1;
 }
 
 /* Home */
@@ -242,11 +265,17 @@ body {
 /* Tabs */
 .tabs {
     display: flex;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-bottom: 24px;
 }
+
 .tab {
-    padding: 12px 24px;
+    flex: 1 1 calc(20% - 8px); /* 무조건 한 줄에 최대 5개까지만 허용 (9개일 경우 5개, 4개로 균형 정렬) */
+    text-align: center;
+    padding: 12px 8px;
+    font-size: 15px;
+    letter-spacing: -0.3px;
     background: #FFFFFF;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -254,6 +283,7 @@ body {
     color: var(--text-sub);
     cursor: pointer;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
+    white-space: nowrap;
 }
 .tab:hover {
     border-color: var(--primary-color);
@@ -340,4 +370,144 @@ body {
 .info-card.active .btn-outline {
     border-color: var(--primary-color);
     color: var(--primary-color);
+}
+
+/* 햄버거 메뉴 토글 버튼 (PC에서는 숨김) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 200;
+}
+.menu-toggle .bar {
+    height: 2px;
+    width: 100%;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #ffffff;
+        flex-direction: column;
+        padding-top: 80px;
+        padding-left: 30px;
+        gap: 10px;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 150;
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-link {
+        font-size: 18px;
+        padding: 15px 0;
+        width: 100%;
+        display: block;
+    }
+    .nav-link.active::after {
+        display: none; /* 모바일 메뉴에서는 밑줄 효과 제거 */
+    }
+    .nav-link.active {
+        color: var(--primary-color);
+    }
+
+    /* 햄버거 X 애니메이션 */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* 반응형 레이아웃 조정 */
+    .chart-grid {
+        grid-template-columns: 1fr 1fr; /* 차트도 모바일에서 2열로 줄여서 공간 확보 */
+        gap: 12px;
+    }
+    .platform-icons {
+        grid-template-columns: repeat(4, 1fr); /* 4열 2줄로 설정 */
+        gap: 8px;
+    }
+    .icon-box {
+        padding: 12px 0;
+        border-radius: 12px;
+    }
+    .icon-placeholder {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 8px;
+    }
+    .icon-name {
+        font-size: 12px;
+    }
+
+    .musicshow-top {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 12px; /* 카드 사이 간격 축소 */
+    }
+    .info-card {
+        padding: 20px 16px; /* 내부 여백 대폭 축소 */
+    }
+    .info-card h3 {
+        font-size: 18px; /* 폰트 사이즈 축소 */
+        margin-bottom: 8px;
+    }
+    .info-card p {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+    .btn-primary, .btn-outline {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 30px 16px;
+    }
+    .page-title {
+        font-size: 24px;
+    }
+    
+    /* 가이드 탭(버튼) 모바일 줄바꿈 균형 조정 (한 줄에 약 5개씩 강제 배치) */
+    .tabs {
+        gap: 6px;
+    }
+    .tab {
+        flex: 1 1 calc(20% - 6px);
+        padding: 10px 2px;
+        font-size: 11px; /* 모바일에서 5개가 들어가도록 축소 */
+        letter-spacing: -0.5px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
 }

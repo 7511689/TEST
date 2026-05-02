@@ -349,3 +349,72 @@ navLinks.forEach(link => {
 window.addEventListener('DOMContentLoaded', () => {
     renderPage('home');
 });
+
+// --- 모바일 UI 및 라이트박스 제어 로직 ---
+// 햄버거 메뉴 토글
+window.toggleMobileMenu = function() {
+    const navMenu = document.getElementById('nav-menu');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    if(navMenu && menuBtn) {
+        navMenu.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+    }
+}
+
+// 라이트박스(이미지 확대) 열기
+window.openLightbox = function(element) {
+    const lightbox = document.getElementById('lightbox');
+    if(!lightbox) return;
+    lightbox.innerHTML = '';
+    
+    const clone = element.cloneNode(true);
+    clone.style.width = '100%';
+    clone.style.height = 'auto';
+    clone.style.maxHeight = '90vh';
+    clone.style.margin = '0';
+    clone.style.cursor = 'zoom-out';
+    clone.classList.remove('placeholder-box'); // 기존 호버/클릭 효과 제거
+    clone.style.backgroundColor = '#fff';
+    clone.style.color = '#111';
+    
+    lightbox.appendChild(clone);
+    lightbox.style.display = 'flex';
+    setTimeout(() => lightbox.classList.add('active'), 10);
+}
+
+// 라이트박스 닫기
+window.closeLightbox = function() {
+    const lightbox = document.getElementById('lightbox');
+    if(!lightbox) return;
+    lightbox.classList.remove('active');
+    setTimeout(() => {
+        lightbox.style.display = 'none';
+        lightbox.innerHTML = '';
+    }, 300);
+}
+
+// 전역 클릭 이벤트 (이벤트 위임)
+document.body.addEventListener('click', function(e) {
+    // 1. 모바일 메뉴 외부 클릭 시 닫기
+    const navMenu = document.getElementById('nav-menu');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    if (navMenu && navMenu.classList.contains('active')) {
+        if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+            navMenu.classList.remove('active');
+            menuBtn.classList.remove('active');
+        }
+    }
+    
+    // 2. 모바일에서 메뉴 링크 클릭 시 즉시 닫기
+    if (e.target.classList.contains('nav-link')) {
+        if (navMenu) navMenu.classList.remove('active');
+        if (menuBtn) menuBtn.classList.remove('active');
+    }
+
+    // 3. 라이트박스 실행 (회색 이미지 박스 클릭 시)
+    const placeholder = e.target.closest('.placeholder-box');
+    // 아이콘 박스 등 다른 클릭 요소가 아닐 때만 실행
+    if (placeholder && !placeholder.closest('.icon-box')) {
+        window.openLightbox(placeholder);
+    }
+});
