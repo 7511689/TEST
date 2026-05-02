@@ -47,6 +47,29 @@ const pages = {
                 <div class="chart-rank">00차트 00위 (↑3)</div>
             </div>
         </div>
+
+        <div class="official-links-wrapper">
+            <a href="https://www.youtube.com/@flareu_official" target="_blank" rel="noopener noreferrer" class="official-link-item" title="공식 유튜브">
+                <div class="official-icon-placeholder">YT</div>
+                <span class="official-link-text">공식 유튜브</span>
+            </a>
+            <a href="https://instagram.com/flareu_official" target="_blank" rel="noopener noreferrer" class="official-link-item" title="공식 인스타그램">
+                <div class="official-icon-placeholder">IG</div>
+                <span class="official-link-text">공식 인스타</span>
+            </a>
+            <a href="https://x.com/flareu_official" target="_blank" rel="noopener noreferrer" class="official-link-item" title="공식 X">
+                <div class="official-icon-placeholder">X</div>
+                <span class="official-link-text">공식 X</span>
+            </a>
+            <a href="https://flareu.oopy.io/" target="_blank" rel="noopener noreferrer" class="official-link-item" title="공식 사이트">
+                <div class="official-icon-placeholder">WEB</div>
+                <span class="official-link-text">공식 사이트</span>
+            </a>
+            <a href="https://x.com/FlareU_stream" target="_blank" rel="noopener noreferrer" class="official-link-item" title="음총팀 X">
+                <div class="official-icon-placeholder">X</div>
+                <span class="official-link-text">음총팀 X</span>
+            </a>
+        </div>
     `,
     oneclick: `
         <h1 class="page-title">원클릭 스트리밍</h1>
@@ -304,6 +327,18 @@ window.changeContent = function(element, targetId, text, titleId = null, titleTe
             target.innerHTML = text;
             target.style.transform = 'translateY(0)';
             target.style.opacity = '1';
+
+            // 라디오 원클릭, 아이디 기부 페이지인 경우 하단 이미지로 스크롤
+            if (targetId === 'radio-placeholder' || targetId === 'donation-placeholder') {
+                const headerOffset = 90;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
         }, 150);
     }
     
