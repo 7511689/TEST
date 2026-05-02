@@ -228,6 +228,12 @@ window.playOneClick = function(platform) {
     const floList = '564653294,580145350,554618802';
     const musicwaveLink = 'https://musicwave.melon.com/musicwave.htm?a=Y&m=pY_guuANgzNwZKN8mCNOcA';
     
+    // 안드로이드 환경에서는 intent 스킴을 사용하여 멜론 앱을 강제로 열어줍니다.
+    const isAndroid = /android/i.test(userAgent);
+    const musicwaveMobile = isAndroid 
+        ? 'intent://musicwave.melon.com/musicwave.htm?a=Y&m=pY_guuANgzNwZKN8mCNOcA#Intent;scheme=https;package=com.iloen.melon;end'
+        : musicwaveLink;
+    
     const links = {
         'melon': {
             mobile: `melonapp://play?cType=1&cList=${melonList}`,
@@ -249,7 +255,7 @@ window.playOneClick = function(platform) {
         'spotify': { mobile: null, pc: null },
         'youtube': { mobile: null, pc: null },
         'musicwave': {
-            mobile: musicwaveLink,
+            mobile: musicwaveMobile,
             pc: musicwaveLink
         }
     };
