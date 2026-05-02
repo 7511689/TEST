@@ -85,6 +85,7 @@ const pages = {
         </div>
 
         <div id="streaming-placeholder" class="placeholder-box guide-placeholder">멜론 스밍 가이드 이미지</div>
+        <p style="text-align: right; font-size: 11px; color: #888; margin-top: 8px;">※ 이미지를 터치하면 더 크게 볼 수 있습니다.</p>
     `,
     download: `
         <h1 class="page-title">음원 다운로드 가이드</h1>
@@ -103,6 +104,7 @@ const pages = {
         </div>
 
         <div id="download-placeholder" class="placeholder-box guide-placeholder">멜론음원 다운로드 가이드 이미지</div>
+        <p style="text-align: right; font-size: 11px; color: #888; margin-top: 8px;">※ 이미지를 터치하면 더 크게 볼 수 있습니다.</p>
     `,
     musicshow: `
         <h1 class="page-title">음악방송 가이드</h1>
@@ -131,12 +133,13 @@ const pages = {
                 <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', '인기가요 상세 가이드 이미지', 'musicshow-title', '인기가요')">인기가요</div>
             </div>
             
-            <div style="text-align: left; padding: 30px; background: #F8FBF9; border-radius: 12px; margin-top: 20px;">
+            <div style="text-align: left; margin-top: 20px;">
                 <h3 style="font-size: 20px; margin-bottom: 20px; display:flex; align-items:center; gap:10px;">
                     <span style="background:#00E4B7; color:white; width:32px; height:32px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">📖</span> 
                     <span id="musicshow-title">쇼챔피언 상세 가이드</span>
                 </h3>
                 <div id="musicshow-placeholder" class="placeholder-box" style="height: 600px;">쇼챔피언 상세 가이드 이미지</div>
+                <p style="text-align: right; font-size: 11px; color: #888; margin-top: 8px;">※ 이미지를 터치하면 더 크게 볼 수 있습니다.</p>
             </div>
         </div>
     `,

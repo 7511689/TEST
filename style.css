@@ -392,6 +392,10 @@ body {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .header-container {
+        justify-content: space-between;
+    }
+    
     .menu-toggle {
         display: flex;
     }
