@@ -244,6 +244,9 @@ body {
 .icon-box.active .icon-placeholder {
     background: var(--primary-color);
 }
+.icon-box.active .icon-img {
+    box-shadow: 0 0 0 3px var(--primary-color);
+}
 .icon-placeholder {
     width: 48px;
     height: 48px;
@@ -251,6 +254,14 @@ body {
     border-radius: 12px;
     margin-bottom: 12px;
     transition: background 0.2s;
+}
+.icon-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    object-fit: cover;
+    transition: box-shadow 0.2s;
 }
 .icon-name { font-size: 14px; font-weight: 600; color: var(--text-sub); }
 .recommended-list-wrapper {
@@ -293,6 +304,22 @@ body {
     background: var(--primary-color);
     color: #FFFFFF;
     border-color: var(--primary-color);
+}
+
+/* Guide Image & Sequence */
+.img-sequence {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+.guide-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: block;
+    cursor: zoom-in;
 }
 
 /* Guide placeholder */

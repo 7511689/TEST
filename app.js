@@ -1,8 +1,41 @@
 // 기부 폼 컨텐츠 정의
 const donationContents = {
-    genie: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/9LHVtfuwnsPjQbH47" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,228,183,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 지니 아이디 제출 폼 작성하기</a></div><div class="placeholder-box guide-placeholder">지니뮤직 아이디 기부 상세 이미지</div>`,
-    bugs: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/3UXwndvj45rtEPWc6" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #0096FF; box-shadow: 0 4px 12px rgba(0,150,255,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 벅스 아이디 제출 폼 작성하기</a></div><div class="placeholder-box guide-placeholder">벅스 아이디 기부 상세 이미지</div>`,
-    dual: `<div class="placeholder-box guide-placeholder">듀얼넘버 가이드 상세 이미지</div>`
+    genie: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/9LHVtfuwnsPjQbH47" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,228,183,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 지니 아이디 제출 폼 작성하기</a></div><img src="image/아이디기부/지니아이디 생성 가이드.jpg" class="guide-img" alt="지니아이디 생성 가이드">`,
+    bugs: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/3UXwndvj45rtEPWc6" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #0096FF; box-shadow: 0 4px 12px rgba(0,150,255,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 벅스 아이디 제출 폼 작성하기</a></div><img src="image/아이디기부/벅스아이디 생성 가이드.jpg" class="guide-img" alt="벅스아이디 생성 가이드">`,
+    dual: `<img src="image/아이디기부/듀얼넘버 안내 가이드.jpg" class="guide-img" alt="듀얼넘버 안내 가이드">`
+};
+
+// 가이드 컨텐츠 정의
+const streamingContents = {
+    melon: `<div class="img-sequence"><img src="image/스트리밍가이드/멜론스밍가이드_1.png" class="guide-img" alt="멜론스밍가이드_1"><img src="image/스트리밍가이드/멜론스밍가이드_2.png" class="guide-img" alt="멜론스밍가이드_2"></div>`,
+    genie: `<div class="img-sequence"><img src="image/스트리밍가이드/지니스밍가이드.png" class="guide-img" alt="지니스밍가이드"><img src="image/스트리밍가이드/지니스밍가이드_앱설정.png" class="guide-img" alt="지니앱설정"></div>`,
+    flo: `<div class="img-sequence"><img src="image/스트리밍가이드/플로스밍가이드.png" class="guide-img" alt="플로스밍가이드"><img src="image/스트리밍가이드/플로앱설정가이드.png" class="guide-img" alt="플로앱설정"></div>`,
+    bugs: `<div class="img-sequence"><img src="image/스트리밍가이드/벅스스밍가이드.png" class="guide-img" alt="벅스스밍가이드_1"><img src="image/스트리밍가이드/벅스스밍가이드_2.png" class="guide-img" alt="벅스스밍가이드_2"></div>`,
+    spotify: `<div class="placeholder-box guide-placeholder">스포티파이 스밍 가이드 이미지</div>`,
+    youtube: `<div class="placeholder-box guide-placeholder">유튜브 뮤직 스밍 가이드 이미지</div>`,
+    vibe: `<div class="placeholder-box guide-placeholder">바이브 스밍 가이드 이미지</div>`,
+    apple: `<div class="placeholder-box guide-placeholder">애플뮤직 스밍 가이드 이미지</div>`,
+    stationhead: `<div class="placeholder-box guide-placeholder">스테이션헤드 스밍 가이드 이미지</div>`
+};
+
+const downloadContents = {
+    melon: `<div class="img-sequence"><img src="image/다운가이드/멜론다운가이드_모바일.png" class="guide-img" alt="멜론다운모바일"><img src="image/다운가이드/멜론다운가이드_PC.png" class="guide-img" alt="멜론다운PC"></div>`,
+    melonGift: `<div class="placeholder-box guide-placeholder">멜론 선물하기 가이드 이미지</div>`,
+    genie: `<div class="img-sequence"><img src="image/다운가이드/지니다운가이드_모바일.png" class="guide-img" alt="지니다운모바일"><img src="image/다운가이드/지니다운가이드_PC.png" class="guide-img" alt="지니다운PC"></div>`,
+    genieGift: `<div class="placeholder-box guide-placeholder">지니 선물하기 가이드 이미지</div>`,
+    bugs: `<div class="img-sequence"><img src="image/다운가이드/벅스다운가이드_모바일.png" class="guide-img" alt="벅스다운모바일"><img src="image/다운가이드/벅스다운가이드_PC.png" class="guide-img" alt="벅스다운PC"></div>`,
+    kakao: `<div class="placeholder-box guide-placeholder">카카오뮤직 다운로드 가이드 이미지</div>`,
+    vcolor: `<div class="placeholder-box guide-placeholder">V컬러링 가이드 이미지</div>`,
+    melonMv: `<div class="placeholder-box guide-placeholder">멜론 뮤비 다운로드 이미지</div>`,
+    bugsMv: `<div class="placeholder-box guide-placeholder">벅스 뮤비 다운로드 이미지</div>`
+};
+
+const musicshowContents = {
+    showchamp: `<div class="img-sequence"><img src="image/음악방송가이드/쇼챔피언 가이드-기본.png" class="guide-img" alt="쇼챔피언가이드"><img src="image/음악방송가이드/쇼챔피언 가이드_재화 모으는 법.png" class="guide-img" alt="쇼챔피언재화"></div>`,
+    mcount: `<div class="img-sequence"><img src="image/음악방송가이드/엠카운트다운 가이드-기본.png" class="guide-img" alt="엠카가이드"></div>`,
+    musicbank: `<div class="img-sequence"><img src="image/음악방송가이드/뮤직뱅크 가이드-기본.png" class="guide-img" alt="뮤뱅가이드"><img src="image/음악방송가이드/뮤직뱅크 가이드_재화 모으는 법.png" class="guide-img" alt="뮤뱅재화"></div>`,
+    musiccore: `<div class="img-sequence"><img src="image/음악방송가이드/쇼음악중심 가이드-기본.png" class="guide-img" alt="음중가이드"><img src="image/음악방송가이드/쇼음악중심 가이드_재화 모으는 법.png" class="guide-img" alt="음중재화"><img src="image/음악방송가이드/쇼음악중심 가이드_stageMpick_기본.png" class="guide-img" alt="음중스테이지엠픽"><img src="image/음악방송가이드/쇼음악중심 가이드_stageMpick_재화 모으는 법.png" class="guide-img" alt="음중스테이지엠픽재화"></div>`,
+    inkigayo: `<div class="img-sequence"><img src="image/음악방송가이드/인기가요 가이드-기본.png" class="guide-img" alt="인가가이드"><img src="image/음악방송가이드/인기가요 가이드_LinC_재화 모으는 법.png" class="guide-img" alt="인가링크재화"><img src="image/음악방송가이드/인기가요 가이드_하이어_재화 모으는 법.png" class="guide-img" alt="인가하이어재화"></div>`
 };
 
 // 페이지별 HTML 템플릿 데이터
@@ -76,14 +109,14 @@ const pages = {
         <p class="page-desc">원하시는 플랫폼의 아이콘을 클릭하면 즉시 스트리밍이 가능합니다!</p>
         
         <div class="platform-icons">
-            <div class="icon-box active" onclick="changeContent(this); playOneClick('melon')"><div class="icon-placeholder"></div><span class="icon-name">멜론</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('bugs')"><div class="icon-placeholder"></div><span class="icon-name">벅스</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('genie')"><div class="icon-placeholder"></div><span class="icon-name">지니</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('flo')"><div class="icon-placeholder"></div><span class="icon-name">플로</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('vibe')"><div class="icon-placeholder"></div><span class="icon-name">바이브</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('spotify')"><div class="icon-placeholder"></div><span class="icon-name">스포티파이</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('youtube')"><div class="icon-placeholder"></div><span class="icon-name">유튜브</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('musicwave')"><div class="icon-placeholder"></div><span class="icon-name">뮤직웨이브</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('melon')"><img src="image/원클릭스트리밍/멜론.png" class="icon-img" alt="멜론"><span class="icon-name">멜론</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('bugs')"><img src="image/원클릭스트리밍/벅스.png" class="icon-img" alt="벅스"><span class="icon-name">벅스</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('genie')"><img src="image/원클릭스트리밍/지니.png" class="icon-img" alt="지니"><span class="icon-name">지니</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('flo')"><img src="image/원클릭스트리밍/플로.png" class="icon-img" alt="플로"><span class="icon-name">플로</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('vibe')"><img src="image/원클릭스트리밍/바이브.png" class="icon-img" alt="바이브"><span class="icon-name">바이브</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('spotify')"><img src="image/원클릭스트리밍/스포티파이.png" class="icon-img" alt="스포티파이"><span class="icon-name">스포티파이</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('youtube')"><img src="image/원클릭스트리밍/유튜브뮤직.png" class="icon-img" alt="유튜브뮤직"><span class="icon-name">유튜브</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('musicwave')"><img src="image/원클릭스트리밍/멜론뮤직웨이브.png" class="icon-img" alt="뮤직웨이브"><span class="icon-name">뮤직웨이브</span></div>
         </div>
 
         <div class="recommended-list-wrapper">
@@ -96,18 +129,20 @@ const pages = {
         <p class="page-desc">스트리밍이 정상적으로 집계될 수 있게 가이드를 지켜주세요.</p>
         
         <div class="tabs">
-            <div class="tab active" onclick="changeContent(this, 'streaming-placeholder', '멜론 스밍 가이드 이미지')">멜론</div>
-            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', '지니 스밍 가이드 이미지')">지니</div>
-            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', '플로 스밍 가이드 이미지')">플로</div>
-            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', '벅스 스밍 가이드 이미지')">벅스</div>
-            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', '스포티파이 스밍 가이드 이미지')">스포티파이</div>
-            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', '유튜브 뮤직 스밍 가이드 이미지')">유튜브 뮤직</div>
-            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', '바이브 스밍 가이드 이미지')">바이브</div>
-            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', '애플뮤직 스밍 가이드 이미지')">애플뮤직</div>
-            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', '스테이션헤드 스밍 가이드 이미지')">스테이션헤드</div>
+            <div class="tab active" onclick="changeContent(this, 'streaming-placeholder', streamingContents.melon)">멜론</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.genie)">지니</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.flo)">플로</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.bugs)">벅스</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.spotify)">스포티파이</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.youtube)">유튜브 뮤직</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.vibe)">바이브</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.apple)">애플뮤직</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.stationhead)">스테이션헤드</div>
         </div>
 
-        <div id="streaming-placeholder" class="placeholder-box guide-placeholder">멜론 스밍 가이드 이미지</div>
+        <div id="streaming-placeholder">
+            ${streamingContents.melon}
+        </div>
         <p style="text-align: right; font-size: 11px; color: #888; margin-top: 8px;">※ 이미지를 터치하면 더 크게 볼 수 있습니다.</p>
     `,
     download: `
@@ -115,18 +150,20 @@ const pages = {
         <p class="page-desc">다운로드가 정상적으로 집계될 수 있게 가이드를 지켜주세요.</p>
         
         <div class="tabs">
-            <div class="tab active" onclick="changeContent(this, 'download-placeholder', '멜론음원 다운로드 가이드 이미지')">멜론음원</div>
-            <div class="tab" onclick="changeContent(this, 'download-placeholder', '멜론 선물하기 가이드 이미지')">멜론선물하기</div>
-            <div class="tab" onclick="changeContent(this, 'download-placeholder', '지니음원 다운로드 가이드 이미지')">지니음원</div>
-            <div class="tab" onclick="changeContent(this, 'download-placeholder', '지니 선물하기 가이드 이미지')">지니 선물하기</div>
-            <div class="tab" onclick="changeContent(this, 'download-placeholder', '벅스음원 다운로드 가이드 이미지')">벅스음원</div>
-            <div class="tab" onclick="changeContent(this, 'download-placeholder', '카카오뮤직 다운로드 가이드 이미지')">카카오뮤직</div>
-            <div class="tab" onclick="changeContent(this, 'download-placeholder', 'V컬러링 가이드 이미지')">V컬러링</div>
-            <div class="tab" onclick="changeContent(this, 'download-placeholder', '멜론 뮤비 다운로드 이미지')">멜론 뮤비</div>
-            <div class="tab" onclick="changeContent(this, 'download-placeholder', '벅스 뮤비 다운로드 이미지')">벅스 뮤비</div>
+            <div class="tab active" onclick="changeContent(this, 'download-placeholder', downloadContents.melon)">멜론음원</div>
+            <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.melonGift)">멜론선물하기</div>
+            <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.genie)">지니음원</div>
+            <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.genieGift)">지니 선물하기</div>
+            <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.bugs)">벅스음원</div>
+            <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.kakao)">카카오뮤직</div>
+            <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.vcolor)">V컬러링</div>
+            <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.melonMv)">멜론 뮤비</div>
+            <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.bugsMv)">벅스 뮤비</div>
         </div>
 
-        <div id="download-placeholder" class="placeholder-box guide-placeholder">멜론음원 다운로드 가이드 이미지</div>
+        <div id="download-placeholder">
+            ${downloadContents.melon}
+        </div>
         <p style="text-align: right; font-size: 11px; color: #888; margin-top: 8px;">※ 이미지를 터치하면 더 크게 볼 수 있습니다.</p>
     `,
     musicshow: `
@@ -136,11 +173,11 @@ const pages = {
         <div class="musicshow-top">
             <div class="ms-box">
                 <div class="ms-title">방송 반영 비율 <span style="color:#00E4B7;">📊</span></div>
-                <div class="placeholder-box ms-placeholder">반영 비율 차트 영역</div>
+                <img src="image/음악방송가이드/음악방송 반영 비율.png" class="guide-img" alt="반영비율">
             </div>
             <div class="ms-box">
                 <div class="ms-title">투표 일정 <span style="color:#0096FF;">📅</span></div>
-                <div class="placeholder-box ms-placeholder">일정 달력 영역</div>
+                <img src="image/음악방송가이드/음악방송 투표 스케줄러.png" class="guide-img" alt="투표일정">
             </div>
         </div>
 
@@ -149,11 +186,11 @@ const pages = {
             <p style="color: var(--text-sub); margin-bottom: 30px;">각 방송사 아이콘을 클릭하여 상세한 집계 방식과 투표 가이드를 확인하세요.</p>
             
             <div class="tabs" style="justify-content: center;">
-                <div class="tab active" onclick="changeContent(this, 'musicshow-placeholder', '쇼챔피언 상세 가이드 이미지', 'musicshow-title', '쇼챔피언')">쇼챔피언</div>
-                <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', '엠카운트다운 상세 가이드 이미지', 'musicshow-title', '엠카운트다운')">엠카운트다운</div>
-                <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', '뮤직뱅크 상세 가이드 이미지', 'musicshow-title', '뮤직뱅크')">뮤직뱅크</div>
-                <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', '음악중심 상세 가이드 이미지', 'musicshow-title', '음악중심')">음악중심</div>
-                <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', '인기가요 상세 가이드 이미지', 'musicshow-title', '인기가요')">인기가요</div>
+                <div class="tab active" onclick="changeContent(this, 'musicshow-placeholder', musicshowContents.showchamp, 'musicshow-title', '쇼챔피언')">쇼챔피언</div>
+                <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', musicshowContents.mcount, 'musicshow-title', '엠카운트다운')">엠카운트다운</div>
+                <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', musicshowContents.musicbank, 'musicshow-title', '뮤직뱅크')">뮤직뱅크</div>
+                <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', musicshowContents.musiccore, 'musicshow-title', '음악중심')">음악중심</div>
+                <div class="tab" onclick="changeContent(this, 'musicshow-placeholder', musicshowContents.inkigayo, 'musicshow-title', '인기가요')">인기가요</div>
             </div>
             
             <div style="text-align: left; margin-top: 20px;">
@@ -161,7 +198,9 @@ const pages = {
                     <span style="background:#00E4B7; color:white; width:32px; height:32px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;">📖</span> 
                     <span id="musicshow-title">쇼챔피언 상세 가이드</span>
                 </h3>
-                <div id="musicshow-placeholder" class="placeholder-box" style="height: 600px;">쇼챔피언 상세 가이드 이미지</div>
+                <div id="musicshow-placeholder">
+                    ${musicshowContents.showchamp}
+                </div>
                 <p style="text-align: right; font-size: 11px; color: #888; margin-top: 8px;">※ 이미지를 터치하면 더 크게 볼 수 있습니다.</p>
             </div>
         </div>
@@ -421,6 +460,11 @@ window.openLightbox = function(element) {
     clone.classList.remove('placeholder-box'); // 기존 호버/클릭 효과 제거
     clone.style.backgroundColor = '#fff';
     clone.style.color = '#111';
+
+    if (clone.tagName.toLowerCase() === 'img') {
+        clone.style.objectFit = 'contain';
+        clone.style.backgroundColor = 'transparent';
+    }
     
     lightbox.appendChild(clone);
     lightbox.style.display = 'flex';
@@ -456,10 +500,13 @@ document.body.addEventListener('click', function(e) {
         if (menuBtn) menuBtn.classList.remove('active');
     }
 
-    // 3. 라이트박스 실행 (회색 이미지 박스 클릭 시)
+    // 3. 라이트박스 실행 (회색 이미지 박스 또는 가이드 이미지 클릭 시)
     const placeholder = e.target.closest('.placeholder-box');
-    // 아이콘 박스 등 다른 클릭 요소가 아닐 때만 실행
+    const guideImg = e.target.closest('.guide-img');
+    
     if (placeholder && !placeholder.closest('.icon-box')) {
         window.openLightbox(placeholder);
+    } else if (guideImg) {
+        window.openLightbox(guideImg);
     }
 });
