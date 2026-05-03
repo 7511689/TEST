@@ -1,16 +1,16 @@
 // 기부 폼 컨텐츠 정의
 const donationContents = {
-    genie: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/9LHVtfuwnsPjQbH47" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,228,183,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 지니 아이디 제출 폼 작성하기</a></div><img src="image/아이디기부/지니아이디 생성 가이드.jpg" class="guide-img" alt="지니아이디 생성 가이드">`,
-    bugs: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/3UXwndvj45rtEPWc6" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #0096FF; box-shadow: 0 4px 12px rgba(0,150,255,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 벅스 아이디 제출 폼 작성하기</a></div><img src="image/아이디기부/벅스아이디 생성 가이드.jpg" class="guide-img" alt="벅스아이디 생성 가이드">`,
-    dual: `<img src="image/아이디기부/듀얼넘버 안내 가이드.jpg" class="guide-img" alt="듀얼넘버 안내 가이드">`
+    genie: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/9LHVtfuwnsPjQbH47" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,228,183,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 지니 아이디 제출 폼 작성하기</a></div><img src="image/id_donation/genie_id_guide.jpg" class="guide-img" alt="지니아이디 생성 가이드">`,
+    bugs: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/3UXwndvj45rtEPWc6" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #0096FF; box-shadow: 0 4px 12px rgba(0,150,255,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 벅스 아이디 제출 폼 작성하기</a></div><img src="image/id_donation/bugs_id_guide.jpg" class="guide-img" alt="벅스아이디 생성 가이드">`,
+    dual: `<img src="image/id_donation/dual_number_guide.jpg" class="guide-img" alt="듀얼넘버 안내 가이드">`
 };
 
 // 가이드 컨텐츠 정의
 const streamingContents = {
-    melon: `<div class="img-sequence"><img src="image/스트리밍가이드/멜론스밍가이드_1.png" class="guide-img" alt="멜론스밍가이드_1"><img src="image/스트리밍가이드/멜론스밍가이드_2.png" class="guide-img" alt="멜론스밍가이드_2"></div>`,
-    genie: `<div class="img-sequence"><img src="image/스트리밍가이드/지니스밍가이드.png" class="guide-img" alt="지니스밍가이드"><img src="image/스트리밍가이드/지니스밍가이드_앱설정.png" class="guide-img" alt="지니앱설정"></div>`,
-    flo: `<div class="img-sequence"><img src="image/스트리밍가이드/플로스밍가이드.png" class="guide-img" alt="플로스밍가이드"><img src="image/스트리밍가이드/플로앱설정가이드.png" class="guide-img" alt="플로앱설정"></div>`,
-    bugs: `<div class="img-sequence"><img src="image/스트리밍가이드/벅스스밍가이드.png" class="guide-img" alt="벅스스밍가이드_1"><img src="image/스트리밍가이드/벅스스밍가이드_2.png" class="guide-img" alt="벅스스밍가이드_2"></div>`,
+    melon: `<div class="img-sequence"><img src="image/streaming_guide/melon_guide_1.png" class="guide-img" alt="멜론스밍가이드_1"><img src="image/streaming_guide/melon_guide_2.png" class="guide-img" alt="멜론스밍가이드_2"></div>`,
+    genie: `<div class="img-sequence"><img src="image/streaming_guide/genie_guide.png" class="guide-img" alt="지니스밍가이드"><img src="image/streaming_guide/genie_guide_app_setting.png" class="guide-img" alt="지니앱설정"></div>`,
+    flo: `<div class="img-sequence"><img src="image/streaming_guide/flo_guide.png" class="guide-img" alt="플로스밍가이드"><img src="image/streaming_guide/flo_app_setting_guide.png" class="guide-img" alt="플로앱설정"></div>`,
+    bugs: `<div class="img-sequence"><img src="image/streaming_guide/bugs_guide_1.png" class="guide-img" alt="벅스스밍가이드_1"><img src="image/streaming_guide/bugs_guide_2.png" class="guide-img" alt="벅스스밍가이드_2"></div>`,
     spotify: `<div class="placeholder-box guide-placeholder">스포티파이 스밍 가이드 이미지</div>`,
     youtube: `<div class="placeholder-box guide-placeholder">유튜브 뮤직 스밍 가이드 이미지</div>`,
     vibe: `<div class="placeholder-box guide-placeholder">바이브 스밍 가이드 이미지</div>`,
@@ -19,11 +19,11 @@ const streamingContents = {
 };
 
 const downloadContents = {
-    melon: `<div class="img-sequence"><img src="image/다운가이드/멜론다운가이드_모바일.png" class="guide-img" alt="멜론다운모바일"><img src="image/다운가이드/멜론다운가이드_PC.png" class="guide-img" alt="멜론다운PC"></div>`,
+    melon: `<div class="img-sequence"><img src="image/download_guide/melon_mobile.png" class="guide-img" alt="멜론다운모바일"><img src="image/download_guide/melon_pc.png" class="guide-img" alt="멜론다운PC"></div>`,
     melonGift: `<div class="placeholder-box guide-placeholder">멜론 선물하기 가이드 이미지</div>`,
-    genie: `<div class="img-sequence"><img src="image/다운가이드/지니다운가이드_모바일.png" class="guide-img" alt="지니다운모바일"><img src="image/다운가이드/지니다운가이드_PC.png" class="guide-img" alt="지니다운PC"></div>`,
+    genie: `<div class="img-sequence"><img src="image/download_guide/genie_mobile.png" class="guide-img" alt="지니다운모바일"><img src="image/download_guide/genie_pc.png" class="guide-img" alt="지니다운PC"></div>`,
     genieGift: `<div class="placeholder-box guide-placeholder">지니 선물하기 가이드 이미지</div>`,
-    bugs: `<div class="img-sequence"><img src="image/다운가이드/벅스다운가이드_모바일.png" class="guide-img" alt="벅스다운모바일"><img src="image/다운가이드/벅스다운가이드_PC.png" class="guide-img" alt="벅스다운PC"></div>`,
+    bugs: `<div class="img-sequence"><img src="image/download_guide/bugs_mobile.png" class="guide-img" alt="벅스다운모바일"><img src="image/download_guide/bugs_pc.png" class="guide-img" alt="벅스다운PC"></div>`,
     kakao: `<div class="placeholder-box guide-placeholder">카카오뮤직 다운로드 가이드 이미지</div>`,
     vcolor: `<div class="placeholder-box guide-placeholder">V컬러링 가이드 이미지</div>`,
     melonMv: `<div class="placeholder-box guide-placeholder">멜론 뮤비 다운로드 이미지</div>`,
@@ -31,11 +31,11 @@ const downloadContents = {
 };
 
 const musicshowContents = {
-    showchamp: `<div class="img-sequence"><img src="image/음악방송가이드/쇼챔피언 가이드-기본.png" class="guide-img" alt="쇼챔피언가이드"><img src="image/음악방송가이드/쇼챔피언 가이드_재화 모으는 법.png" class="guide-img" alt="쇼챔피언재화"></div>`,
-    mcount: `<div class="img-sequence"><img src="image/음악방송가이드/엠카운트다운 가이드-기본.png" class="guide-img" alt="엠카가이드"></div>`,
-    musicbank: `<div class="img-sequence"><img src="image/음악방송가이드/뮤직뱅크 가이드-기본.png" class="guide-img" alt="뮤뱅가이드"><img src="image/음악방송가이드/뮤직뱅크 가이드_재화 모으는 법.png" class="guide-img" alt="뮤뱅재화"></div>`,
-    musiccore: `<div class="img-sequence"><img src="image/음악방송가이드/쇼음악중심 가이드-기본.png" class="guide-img" alt="음중가이드"><img src="image/음악방송가이드/쇼음악중심 가이드_재화 모으는 법.png" class="guide-img" alt="음중재화"><img src="image/음악방송가이드/쇼음악중심 가이드_stageMpick_기본.png" class="guide-img" alt="음중스테이지엠픽"><img src="image/음악방송가이드/쇼음악중심 가이드_stageMpick_재화 모으는 법.png" class="guide-img" alt="음중스테이지엠픽재화"></div>`,
-    inkigayo: `<div class="img-sequence"><img src="image/음악방송가이드/인기가요 가이드-기본.png" class="guide-img" alt="인가가이드"><img src="image/음악방송가이드/인기가요 가이드_LinC_재화 모으는 법.png" class="guide-img" alt="인가링크재화"><img src="image/음악방송가이드/인기가요 가이드_하이어_재화 모으는 법.png" class="guide-img" alt="인가하이어재화"></div>`
+    showchamp: `<div class="img-sequence"><img src="image/musicshow_guide/showchamp_basic.png" class="guide-img" alt="쇼챔피언가이드"><img src="image/musicshow_guide/showchamp_resources.png" class="guide-img" alt="쇼챔피언재화"></div>`,
+    mcount: `<div class="img-sequence"><img src="image/musicshow_guide/mcount_basic.png" class="guide-img" alt="엠카가이드"></div>`,
+    musicbank: `<div class="img-sequence"><img src="image/musicshow_guide/musicbank_basic.png" class="guide-img" alt="뮤뱅가이드"><img src="image/musicshow_guide/musicbank_resources.png" class="guide-img" alt="뮤뱅재화"></div>`,
+    musiccore: `<div class="img-sequence"><img src="image/musicshow_guide/musiccore_basic.png" class="guide-img" alt="음중가이드"><img src="image/musicshow_guide/musiccore_resources.png" class="guide-img" alt="음중재화"><img src="image/musicshow_guide/musiccore_stagem_basic.png" class="guide-img" alt="음중스테이지엠픽"><img src="image/musicshow_guide/musiccore_stagem_resources.png" class="guide-img" alt="음중스테이지엠픽재화"></div>`,
+    inkigayo: `<div class="img-sequence"><img src="image/musicshow_guide/inkigayo_basic.png" class="guide-img" alt="인가가이드"><img src="image/musicshow_guide/inkigayo_linc_resources.png" class="guide-img" alt="인가링크재화"><img src="image/musicshow_guide/inkigayo_higher_resources.png" class="guide-img" alt="인가하이어재화"></div>`
 };
 
 // 페이지별 HTML 템플릿 데이터
@@ -109,14 +109,14 @@ const pages = {
         <p class="page-desc">원하시는 플랫폼의 아이콘을 클릭하면 즉시 스트리밍이 가능합니다!</p>
         
         <div class="platform-icons">
-            <div class="icon-box" onclick="changeContent(this); playOneClick('melon')"><img src="image/원클릭스트리밍/멜론.png" class="icon-img" alt="멜론"><span class="icon-name">멜론</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('bugs')"><img src="image/원클릭스트리밍/벅스.png" class="icon-img" alt="벅스"><span class="icon-name">벅스</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('genie')"><img src="image/원클릭스트리밍/지니.png" class="icon-img" alt="지니"><span class="icon-name">지니</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('flo')"><img src="image/원클릭스트리밍/플로.png" class="icon-img" alt="플로"><span class="icon-name">플로</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('vibe')"><img src="image/원클릭스트리밍/바이브.png" class="icon-img" alt="바이브"><span class="icon-name">바이브</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('spotify')"><img src="image/원클릭스트리밍/스포티파이.png" class="icon-img" alt="스포티파이"><span class="icon-name">스포티파이</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('youtube')"><img src="image/원클릭스트리밍/유튜브뮤직.png" class="icon-img" alt="유튜브뮤직"><span class="icon-name">유튜브</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('musicwave')"><img src="image/원클릭스트리밍/멜론뮤직웨이브.png" class="icon-img" alt="뮤직웨이브"><span class="icon-name">뮤직웨이브</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('melon')"><img src="image/oneclick_streaming/melon.png" class="icon-img" alt="멜론"><span class="icon-name">멜론</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('bugs')"><img src="image/oneclick_streaming/bugs.png" class="icon-img" alt="벅스"><span class="icon-name">벅스</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('genie')"><img src="image/oneclick_streaming/genie.png" class="icon-img" alt="지니"><span class="icon-name">지니</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('flo')"><img src="image/oneclick_streaming/flo.png" class="icon-img" alt="플로"><span class="icon-name">플로</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('vibe')"><img src="image/oneclick_streaming/vibe.png" class="icon-img" alt="바이브"><span class="icon-name">바이브</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('spotify')"><img src="image/oneclick_streaming/spotify.png" class="icon-img" alt="스포티파이"><span class="icon-name">스포티파이</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('youtube')"><img src="image/oneclick_streaming/youtube.png" class="icon-img" alt="유튜브뮤직"><span class="icon-name">유튜브</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('musicwave')"><img src="image/oneclick_streaming/melon_musicwave.png" class="icon-img" alt="뮤직웨이브"><span class="icon-name">뮤직웨이브</span></div>
         </div>
 
         <div class="recommended-list-wrapper">
@@ -173,11 +173,11 @@ const pages = {
         <div class="musicshow-top">
             <div class="ms-box">
                 <div class="ms-title">방송 반영 비율 <span style="color:#00E4B7;">📊</span></div>
-                <img src="image/음악방송가이드/음악방송 반영 비율.png" class="guide-img" alt="반영비율">
+                <img src="image/musicshow_guide/musicshow_ratio.png" class="guide-img" alt="반영비율">
             </div>
             <div class="ms-box">
                 <div class="ms-title">투표 일정 <span style="color:#0096FF;">📅</span></div>
-                <img src="image/음악방송가이드/음악방송 투표 스케줄러.png" class="guide-img" alt="투표일정">
+                <img src="image/musicshow_guide/musicshow_schedule.png" class="guide-img" alt="투표일정">
             </div>
         </div>
 
