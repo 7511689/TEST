@@ -4,8 +4,8 @@ const supportContents = {
     bugs: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/3UXwndvj45rtEPWc6" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #A12D40; color: #fff; box-shadow: 0 4px 12px rgba(161,45,64,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 벅스 아이디 제출 폼 작성하기</a></div><img src="image/Support_for_the_music_streaming_team/id_donation/bugs_id_guide.jpg" class="guide-img" alt="벅스아이디 생성 가이드">`,
     dual: `<img src="image/Support_for_the_music_streaming_team/id_donation/dual_number_guide.jpg" class="guide-img" alt="듀얼넘버 안내 가이드">`,
     fund: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/9smwrfLNY4hDBxZW8" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #00E4B7; color: #111; box-shadow: 0 4px 12px rgba(0, 228, 183, 0.4); text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 10px;">💸 모금자 정보 입력 폼 작성하기</a></div><img src="image/Support_for_the_music_streaming_team/fundraising/fundraising_Guide.png" class="guide-img" alt="모금 상세 안내 포스터">`,
-    helper: `<div style="text-align: center; margin-bottom: 24px;"><a href="#" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #FF7A00; box-shadow: 0 4px 12px rgba(255,122,0,0.3); display: inline-flex; align-items: center; gap: 8px;">🤝 헬퍼 지원 폼 작성하기</a></div><img src="image/Support_for_the_music_streaming_team/Helpers_Recruitment_Guide.png" class="guide-img" alt="헬퍼 지원 가이드">`,
-    album: `<div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px; margin: 0 auto; padding: 40px 0;"><a href="#" target="_blank" class="btn-outline" style="text-align:center; padding: 20px;">앨범 판매처 1 링크</a><a href="#" target="_blank" class="btn-outline" style="text-align:center; padding: 20px;">앨범 판매처 2 링크</a></div><div class="placeholder-box guide-placeholder" style="height: 400px;">앨범 구매처 안내 이미지</div>`
+    helper: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://open.kakao.com/me/FlareU_stream" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #FF7A00; box-shadow: 0 4px 12px rgba(255,122,0,0.3); display: inline-flex; align-items: center; gap: 8px;">🤝 헬퍼 지원 신청 링크</a></div><img src="image/Support_for_the_music_streaming_team/Helpers_Recruitment_Guide.png" class="guide-img" alt="헬퍼 지원 가이드">`,
+    album: `<div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px; margin: 0 auto; padding: 40px 0;"><a href="#" target="_blank" class="btn-outline" style="text-align:center; padding: 20px;">앨범 판매처 1 링크</a><a href="#" target="_blank" class="btn-outline" style="text-align:center; padding: 20px;">앨범 판매처 2 링크</a></div><img src="image/Support_for_the_music_streaming_team/album_image.jpg" class="guide-img" alt="앨범 구매처 안내 이미지">`
 };
 
 const streamingBasicContents = {
@@ -58,14 +58,14 @@ const pages = {
         
         <div class="carousel-container" id="main-carousel">
             <div class="carousel-track" id="carousel-track">
-                <a href="#" class="carousel-item" onclick="document.querySelector('[data-target=\\'support\\']').click(); return false;">
-                    <div class="placeholder-box" style="height:100%; border-radius:0;">배너 1 (클릭시 음총 서포트 이동)</div>
+                <a href="#" class="carousel-item" onclick="gotoTab('streaming', '음악나누기'); return false;">
+                    <img src="image/Home/Carousel_Banner1.png" alt="지니 음악나누기 바로가기">
                 </a>
-                <a href="#" class="carousel-item" onclick="document.querySelector('[data-target=\\'oneclick\\']').click(); return false;">
-                    <div class="placeholder-box" style="height:100%; border-radius:0; background:#E2E8E5;">배너 2 (클릭시 원클릭 스밍 이동)</div>
+                <a href="#" class="carousel-item" onclick="playOneClick('musicwave'); return false;">
+                    <img src="image/Home/Carousel_Banner2.png" alt="멜론 뮤직웨이브 바로가기">
                 </a>
-                <a href="#" class="carousel-item" onclick="document.querySelector('[data-target=\\'support\\']').click(); return false;" aria-hidden="true">
-                    <div class="placeholder-box" style="height:100%; border-radius:0;">배너 1 (클릭시 음총 서포트 이동)</div>
+                <a href="#" class="carousel-item" onclick="gotoTab('streaming', '음악나누기'); return false;" aria-hidden="true">
+                    <img src="image/Home/Carousel_Banner1.png" alt="지니 음악나누기 바로가기">
                 </a>
             </div>
             <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
@@ -79,7 +79,7 @@ const pages = {
         <div class="shortcut-buttons">
             <div class="shortcut-btn" onclick="document.querySelector('[data-target=\\'oneclick\\']').click()">원클릭 스밍</div>
             <div class="shortcut-btn" onclick="document.querySelector('[data-target=\\'support\\']').click()">음총 서포트</div>
-            <div class="shortcut-btn" onclick="document.querySelector('[data-target=\\'radio\\']').click()">라디오</div>
+            <div class="shortcut-btn" onclick="document.querySelector('[data-target=\\'radio\\']').click()">라디오 원클릭</div>
         </div>
 
         <div class="official-links-wrapper">
@@ -373,6 +373,21 @@ window.playOneClick = function(platform) {
         }
     }
 }
+
+// 특정 탭으로 바로 이동하는 글로벌 함수
+window.gotoTab = function(pageId, tabText) {
+    const navLink = document.querySelector(`[data-target='${pageId}']`);
+    if(navLink) navLink.click();
+    setTimeout(() => {
+        const tabs = document.querySelectorAll('.tab');
+        for(let tab of tabs) {
+            if(tab.innerText.includes(tabText)) {
+                tab.click();
+                break;
+            }
+        }
+    }, 50);
+};
 
 // 컨텐츠 변경 및 탭 활성화 함수 (인라인 이벤트에서 호출됨)
 window.changeContent = function(element, targetId, text, titleId = null, titleText = null) {
