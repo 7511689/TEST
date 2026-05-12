@@ -621,10 +621,13 @@ body {
         font-size: 13px;
     }
     .platform-icons {
-        grid-template-columns: repeat(3, 1fr); /* 3열 2줄로 설정 */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 8px;
     }
     .icon-box {
+        width: calc(33.333% - 6px); /* 한 줄에 3개씩 배치되도록 너비 설정 */
         padding: 12px 0;
         border-radius: 12px;
     }
