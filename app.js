@@ -116,6 +116,7 @@ const pages = {
             <div class="icon-box" onclick="changeContent(this); playOneClick('flo')"><img src="image/oneclick_streaming/flo.png" class="icon-img" alt="플로"><span class="icon-name">플로</span></div>
             <div class="icon-box" onclick="changeContent(this); playOneClick('spotify')"><img src="image/oneclick_streaming/spotify.png" class="icon-img" alt="스포티파이"><span class="icon-name">스포티파이</span></div>
             <div class="icon-box" onclick="changeContent(this); playOneClick('apple')"><img src="image/oneclick_streaming/applemusic_logo.webp" class="icon-img" alt="애플"><span class="icon-name">애플뮤직</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('musicwave')"><img src="image/oneclick_streaming/melon_musicwave.png" class="icon-img" alt="뮤직웨이브"><span class="icon-name">뮤직웨이브</span></div>
         </div>
 
         <div class="recommended-list-wrapper">
