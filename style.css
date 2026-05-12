@@ -195,32 +195,125 @@ body {
     margin-top: 20px;
     margin-bottom: 60px;
 }
-.chart-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-top: 20px;
+/* Carousel Banner */
+.carousel-container {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 12 / 5;
+    margin: 0 auto 40px auto;
+    overflow: hidden;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
-.chart-card {
+.carousel-track {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-item {
+    width: 33.333%;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--placeholder);
+    color: #555;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Carousel controls */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    color: #333;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+    z-index: 10;
+}
+.carousel-btn:hover { background: rgba(255, 255, 255, 0.9); }
+.carousel-btn.prev { left: 16px; }
+.carousel-btn.next { right: 16px; }
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 6px 12px;
+    border-radius: 20px;
+    z-index: 10;
+}
+.carousel-indicators .dot {
+    width: 8px;
+    height: 8px;
+    background: #CCC;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s, width 0.2s;
+}
+.carousel-indicators .dot.active {
+    background: #0096FF;
+    width: 16px;
+    border-radius: 8px;
+}
+
+/* Shortcut Buttons */
+.shortcut-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.shortcut-btn {
+    flex: 1;
+    max-width: 200px;
     background: var(--card-bg);
-    border-radius: 12px;
-    padding: 24px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    border-radius: 12px;
+    padding: 16px 8px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
 }
-.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-.chart-name { font-size: 20px; font-weight: 800; }
-.chart-name.melon { color: #00D564; }
-.chart-name.genie { color: #0096FF; }
-.chart-name.bugs { color: #FF3C00; }
-.chart-name.flo { color: #FF1493; }
-.chart-time { font-size: 12px; color: var(--text-sub); }
-.chart-rank { font-size: 18px; font-weight: 700; white-space: nowrap; }
+.shortcut-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,228,183,0.15);
+}
 
 /* One Click Streaming */
 .platform-icons {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 16px;
     margin-bottom: 40px;
 }
@@ -276,16 +369,16 @@ body {
 /* Tabs */
 .tabs {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
     margin-bottom: 24px;
 }
 
 .tab {
-    flex: 1 1 calc(20% - 8px); /* 무조건 한 줄에 최대 5개까지만 허용 (9개일 경우 5개, 4개로 균형 정렬) */
+    flex: 1 1 0;
     text-align: center;
-    padding: 12px 8px;
-    font-size: 15px;
+    padding: 12px 4px;
+    font-size: 14px;
     letter-spacing: -0.3px;
     background: #FFFFFF;
     border: 1px solid var(--border-color);
@@ -295,6 +388,8 @@ body {
     cursor: pointer;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .tab:hover {
     border-color: var(--primary-color);
@@ -518,12 +613,15 @@ body {
     }
 
     /* 반응형 레이아웃 조정 */
-    .chart-grid {
-        grid-template-columns: 1fr 1fr; /* 차트도 모바일에서 2열로 줄여서 공간 확보 */
-        gap: 12px;
+    .shortcut-buttons {
+        gap: 8px;
+    }
+    .shortcut-btn {
+        padding: 12px 4px;
+        font-size: 13px;
     }
     .platform-icons {
-        grid-template-columns: repeat(4, 1fr); /* 4열 2줄로 설정 */
+        grid-template-columns: repeat(3, 1fr); /* 3열 2줄로 설정 */
         gap: 8px;
     }
     .icon-box {
@@ -545,18 +643,35 @@ body {
     
     .card-grid {
         grid-template-columns: 1fr;
-        gap: 12px; /* 카드 사이 간격 축소 */
+        gap: 12px;
     }
     .info-card {
-        padding: 20px 16px; /* 내부 여백 대폭 축소 */
+        padding: 20px 16px;
     }
     .info-card h3 {
-        font-size: 18px; /* 폰트 사이즈 축소 */
+        font-size: 18px;
         margin-bottom: 8px;
+        text-align: left;
     }
     .info-card p {
+        display: block;
         font-size: 13px;
         margin-bottom: 16px;
+    }
+
+    .support-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .support-grid .info-card {
+        padding: 16px 12px;
+    }
+    .support-grid .info-card h3 {
+        font-size: 15px;
+        margin-bottom: 4px;
+        text-align: center;
+    }
+    .support-grid .info-card p {
+        display: none;
     }
     .btn-primary, .btn-outline {
         padding: 10px 16px;
@@ -585,14 +700,15 @@ body {
         font-size: 24px;
     }
     
-    /* 가이드 탭(버튼) 모바일 줄바꿈 균형 조정 (한 줄에 약 5개씩 강제 배치) */
+    /* 가이드 탭(버튼) 모바일 줄바꿈 균형 조정 */
     .tabs {
+        flex-wrap: wrap;
         gap: 6px;
     }
     .tab {
-        flex: 1 1 calc(20% - 6px);
+        flex: 1 1 calc(25% - 6px); /* 4 items per row */
         padding: 10px 2px;
-        font-size: 11px; /* 모바일에서 5개가 들어가도록 축소 */
+        font-size: 11px;
         letter-spacing: -0.5px;
     }
 
@@ -605,11 +721,10 @@ body {
 
 /* 초소형 모바일 화면 (가로 380px 이하) 대응 */
 @media (max-width: 380px) {
-    .chart-rank {
-        font-size: 14px;
-        letter-spacing: -0.5px;
+    .shortcut-buttons {
+        gap: 6px;
     }
-    .chart-header {
-        margin-bottom: 20px;
+    .shortcut-btn {
+        font-size: 12px;
     }
 }
