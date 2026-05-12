@@ -289,6 +289,9 @@ const pages = {
     `
 };
 
+// 이전 index.html 버전을 위해 id_donation 탭과 support 탭을 동일하게 연결 (캐시 문제 방지)
+pages['id_donation'] = pages['support'];
+
 // DOM 요소
 const appContent = document.getElementById('app-content');
 const navLinks = document.querySelectorAll('.nav-link');
