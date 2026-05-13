@@ -3,7 +3,7 @@ const supportContents = {
     genie: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/9LHVtfuwnsPjQbH47" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #013972; color: #fff; box-shadow: 0 4px 12px rgba(1,57,114,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 지니 아이디 제출 폼 작성하기</a></div><img src="image/Support_for_the_music_streaming_team/id_donation/genie_id_guide.jpg" class="guide-img" alt="지니아이디 생성 가이드">`,
     bugs: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/3UXwndvj45rtEPWc6" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #A12D40; color: #fff; box-shadow: 0 4px 12px rgba(161,45,64,0.3); display: inline-flex; align-items: center; gap: 8px;">📝 벅스 아이디 제출 폼 작성하기</a></div><img src="image/Support_for_the_music_streaming_team/id_donation/bugs_id_guide.jpg" class="guide-img" alt="벅스아이디 생성 가이드">`,
     dual: `<img src="image/Support_for_the_music_streaming_team/id_donation/dual_number_guide.jpg" class="guide-img" alt="듀얼넘버 안내 가이드">`,
-    fund: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/9smwrfLNY4hDBxZW8" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #00E4B7; color: #111; box-shadow: 0 4px 12px rgba(0, 228, 183, 0.4); text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 10px;">💸 모금자 정보 입력 폼 작성하기</a></div><img src="image/Support_for_the_music_streaming_team/fundraising/fundraising_Guide.png" class="guide-img" alt="모금 상세 안내 포스터">`,
+    fund: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://forms.gle/9smwrfLNY4hDBxZW8" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #5EB0ED; color: #fff; box-shadow: 0 4px 12px rgba(94, 176, 237, 0.4); text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 10px;">💸 모금자 정보 입력 폼 작성하기</a></div><img src="image/Support_for_the_music_streaming_team/fundraising/fundraising_Guide.png" class="guide-img" alt="모금 상세 안내 포스터">`,
     helper: `<div style="text-align: center; margin-bottom: 24px;"><a href="https://open.kakao.com/me/FlareU_stream" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #FF7A00; box-shadow: 0 4px 12px rgba(255,122,0,0.3); display: inline-flex; align-items: center; gap: 8px;">🤝 헬퍼 지원 신청 링크</a></div><img src="image/Support_for_the_music_streaming_team/Helpers_Recruitment_Guide.png" class="guide-img" alt="헬퍼 지원 가이드">`,
     album: `<div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px; margin: 0 auto; padding: 40px 0;"><a href="#" target="_blank" class="btn-outline" style="text-align:center; padding: 20px;">앨범 판매처 1 링크</a><a href="#" target="_blank" class="btn-outline" style="text-align:center; padding: 20px;">앨범 판매처 2 링크</a></div><img src="image/Support_for_the_music_streaming_team/album_image.jpg" class="guide-img" alt="앨범 구매처 안내 이미지">`
 };
@@ -20,10 +20,18 @@ const streamingContents = {
     melon: `<div class="img-sequence"><img src="image/streaming_guide/melon_guide_1.png" class="guide-img" alt="멜론스밍가이드_1"><img src="image/streaming_guide/melon_guide_2.png" class="guide-img" alt="멜론스밍가이드_2"></div>`,
     bugs: `<div class="img-sequence"><img src="image/streaming_guide/bugs_guide_1.png" class="guide-img" alt="벅스스밍가이드_1"><img src="image/streaming_guide/bugs_guide_2.png" class="guide-img" alt="벅스스밍가이드_2"></div>`,
     genie: `<div class="img-sequence"><img src="image/streaming_guide/genie_guide.png" class="guide-img" alt="지니스밍가이드"><img src="image/streaming_guide/genie_guide_app_setting.png" class="guide-img" alt="지니앱설정"></div>`,
-    genieShare: `<img src="image/streaming_guide/Genie_Music_Sharing_Guide.png" class="guide-img" alt="지니 음악나누기 가이드 이미지">`,
+    genieShare: `<div style="text-align: center; margin-bottom: 24px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기1</a>
+        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기2</a>
+        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기3</a>
+        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기4</a>
+        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기5</a>
+    </div>
+    <img src="image/streaming_guide/Genie_Music_Sharing_Guide.png" class="guide-img" alt="지니 음악나누기 가이드 이미지">`,
     flo: `<div class="img-sequence"><img src="image/streaming_guide/flo_guide.png" class="guide-img" alt="플로스밍가이드"><img src="image/streaming_guide/flo_app_setting_guide.png" class="guide-img" alt="플로앱설정"></div>`,
     spotify: `<div class="img-sequence"><img src="image/streaming_guide/Spotify_Streaming_Guide.png" class="guide-img" alt="스포티파이 스트리밍 가이드"><img src="image/streaming_guide/Spotify_App_Settings_Guide.png" class="guide-img" alt="스포티파이 앱설정 가이드"><img src="image/streaming_guide/Spotify_Playlist_Guide.png" class="guide-img" alt="스포티파이 플레이리스트 가이드"><img src="image/streaming_guide/Spotify_Streaming_Guide_Eng.png" class="guide-img" alt="스포티파이 영어 스트리밍 가이드"><img src="image/streaming_guide/Spotify_App_Settings_Guide_Eng.png" class="guide-img" alt="스포티파이 영어 앱설정 가이드"></div>`,
     youtube: `<div class="img-sequence"><img src="image/streaming_guide/YouTube_music_video_streaming_guide.png" class="guide-img" alt="유튜브 뮤비 스트리밍 가이드"><img src="image/streaming_guide/YouTube_music_video_streaming_guide_Eng.png" class="guide-img" alt="유튜브 뮤비 스트리밍 가이드(영문)"></div>`,
+    mubit: `<div class="img-sequence"><img src="image/streaming_guide/Mubit_Video_Guide.png" class="guide-img" alt="뮤빗 가이드"><img src="image/streaming_guide/Higher_Video_Guide.png" class="guide-img" alt="하이어 뮤비 가이드"></div>`,
     samsung: `<div class="placeholder-box guide-placeholder">삼성뮤직(멜론) 가이드 이미지</div>`
 };
 
@@ -45,11 +53,17 @@ const musicshowContents = {
     inkigayo: `<div class="img-sequence"><img src="image/musicshow_guide/inkigayo_basic.png" class="guide-img" alt="인가가이드"><img src="image/musicshow_guide/inkigayo_linc_resources.png" class="guide-img" alt="인가링크재화"><img src="image/musicshow_guide/inkigayo_higher_resources.png" class="guide-img" alt="인가하이어재화"></div>`
 };
 
+const radioContents = {
+    kbs: `<div style="text-align: center; margin-bottom: 24px;"><a href="sms:%238910?body=%EC%9A%94%EC%A6%98%20%EB%82%A0%EC%94%A8%EB%9E%91%20%EC%A0%95%EB%A7%90%20%EC%9E%98%20%EC%96%B4%EC%9A%B8%EB%A6%AC%EB%8A%94%20%EB%85%B8%EB%9E%98%EB%9D%BC%20%EC%8B%A0%EC%B2%AD%ED%95%B4%EB%B4%85%EB%8B%88%EB%8B%A4%20:)%20%EB%93%A3%EA%B3%A0%20%EC%9E%88%EC%9C%BC%EB%A9%B4%20%EA%B4%9C%ED%9E%88%20%EA%B8%B0%EB%B6%84%EA%B9%8C%EC%A7%80%20%EC%82%B0%EB%9C%BB%ED%95%B4%EC%A7%80%EB%8A%94%20%EA%B3%A1%EC%9D%B4%EC%97%90%EC%9A%94.%ED%94%8C%EB%A0%88%EC%96%B4%EC%9C%A0%EC%9D%98%20WAY%202%20U%20%EB%93%A4%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94!" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #AEC83E; color: #fff; box-shadow: 0 4px 12px rgba(174,200,62,0.3); display: inline-flex; align-items: center; gap: 8px;">KBS CoolFM 바로 신청</a></div><img src="image/Radio/Radio_KBS.png" class="guide-img" alt="KBS 라디오 상세 가이드">`,
+    mbc: `<div style="text-align: center; margin-bottom: 24px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;"><a href="sms:%238001?body=%EC%9A%94%EC%A6%98%20%EB%82%A0%EC%94%A8%EB%9E%91%20%EC%A0%95%EB%A7%90%20%EC%9E%98%20%EC%96%B4%EC%9A%B8%EB%A6%AC%EB%8A%94%20%EB%85%B8%EB%9E%98%EB%9D%BC%20%EC%8B%A0%EC%B2%AD%ED%95%B4%EB%B4%85%EB%8B%88%EB%8B%A4%20:)%20%EB%93%A3%EA%B3%A0%20%EC%9E%88%EC%9C%BC%EB%A9%B4%20%EA%B4%9C%ED%9E%88%20%EA%B8%B0%EB%B6%84%EA%B9%8C%EC%A7%80%20%EC%82%B0%EB%9C%BB%ED%95%B4%EC%A7%80%EB%8A%94%20%EA%B3%A1%EC%9D%B4%EC%97%90%EC%9A%94.%ED%94%8C%EB%A0%88%EC%96%B4%EC%9C%A0%EC%9D%98%20WAY%202%20U%20%EB%93%A4%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94!" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #7F57DE; color: #fff; box-shadow: 0 4px 12px rgba(127,87,222,0.3); display: inline-flex; align-items: center; gap: 8px;">MBC 표준FM 바로 신청</a><a href="sms:%238000?body=%EC%9A%94%EC%A6%98%20%EB%82%A0%EC%94%A8%EB%9E%91%20%EC%A0%95%EB%A7%90%20%EC%9E%98%20%EC%96%B4%EC%9A%B8%EB%A6%AC%EB%8A%94%20%EB%85%B8%EB%9E%98%EB%9D%BC%20%EC%8B%A0%EC%B2%AD%ED%95%B4%EB%B4%85%EB%8B%88%EB%8B%A4%20:)%20%EB%93%A3%EA%B3%A0%20%EC%9E%88%EC%9C%BC%EB%A9%B4%20%EA%B4%9C%ED%9E%88%20%EA%B8%B0%EB%B6%84%EA%B9%8C%EC%A7%80%20%EC%82%B0%EB%9C%BB%ED%95%B4%EC%A7%80%EB%8A%94%20%EA%B3%A1%EC%9D%B4%EC%97%90%EC%9A%94.%ED%94%8C%EB%A0%88%EC%96%B4%EC%9C%A0%EC%9D%98%20WAY%202%20U%20%EB%93%A4%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94!" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #7F57DE; color: #fff; box-shadow: 0 4px 12px rgba(127,87,222,0.3); display: inline-flex; align-items: center; gap: 8px;">MBC FM4U 바로 신청</a></div><img src="image/Radio/Radio_MBC.png" class="guide-img" alt="MBC 라디오 상세 가이드">`,
+    sbs: `<div style="text-align: center; margin-bottom: 24px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;"><a href="sms:%231077?body=%EC%9A%94%EC%A6%98%20%EB%82%A0%EC%94%A8%EB%9E%91%20%EC%A0%95%EB%A7%90%20%EC%9E%98%20%EC%96%B4%EC%9A%B8%EB%A6%AC%EB%8A%94%20%EB%85%B8%EB%9E%98%EB%9D%BC%20%EC%8B%A0%EC%B2%AD%ED%95%B4%EB%B4%85%EB%8B%88%EB%8B%A4%20:)%20%EB%93%A3%EA%B3%A0%20%EC%9E%88%EC%9C%BC%EB%A9%B4%20%EA%B4%9C%ED%9E%88%20%EA%B8%B0%EB%B6%84%EA%B9%8C%EC%A7%80%20%EC%82%B0%EB%9C%BB%ED%95%B4%EC%A7%80%EB%8A%94%20%EA%B3%A1%EC%9D%B4%EC%97%90%EC%9A%94.%ED%94%8C%EB%A0%88%EC%96%B4%EC%9C%A0%EC%9D%98%20WAY%202%20U%20%EB%93%A4%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94!" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #82C6F8; color: #111; box-shadow: 0 4px 12px rgba(130,198,248,0.3); display: inline-flex; align-items: center; gap: 8px;">SBS 파워FM 바로 신청</a><a href="sms:%231035?body=%EC%9A%94%EC%A6%98%20%EB%82%A0%EC%94%A8%EB%9E%91%20%EC%A0%95%EB%A7%90%20%EC%9E%98%20%EC%96%B4%EC%9A%B8%EB%A6%AC%EB%8A%94%20%EB%85%B8%EB%9E%98%EB%9D%BC%20%EC%8B%A0%EC%B2%AD%ED%95%B4%EB%B4%85%EB%8B%88%EB%8B%A4%20:)%20%EB%93%A3%EA%B3%A0%20%EC%9E%88%EC%9C%BC%EB%A9%B4%20%EA%B4%9C%ED%9E%88%20%EA%B8%B0%EB%B6%84%EA%B9%8C%EC%A7%80%20%EC%82%B0%EB%9C%BB%ED%95%B4%EC%A7%80%EB%8A%94%20%EA%B3%A1%EC%9D%B4%EC%97%90%EC%9A%94.%ED%94%8C%EB%A0%88%EC%96%B4%EC%9C%A0%EC%9D%98%20WAY%202%20U%20%EB%93%A4%EB%A0%A4%EC%A3%BC%EC%84%B8%EC%9A%94!" class="btn-primary" style="padding: 16px 40px; font-size: 18px; border-radius: 50px; background-color: #82C6F8; color: #111; box-shadow: 0 4px 12px rgba(130,198,248,0.3); display: inline-flex; align-items: center; gap: 8px;">SBS 러브FM 바로 신청</a></div><img src="image/Radio/Radio_SBS.png" class="guide-img" alt="SBS 라디오 상세 가이드">`
+};
+
 // 페이지별 HTML 템플릿 데이터
 const pages = {
     home: `
         <div style="text-align: center; margin-bottom: 20px;">
-            <span style="background: #D9F7F1; color: #007D62; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">Youtube MV</span>
+            <span style="background: #E5F3FD; color: #1072B8; padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">Youtube MV</span>
         </div>
         <div class="youtube-mv" style="border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
             <!-- 하단의 src="https://www.youtube.com/embed/영상ID" 부분의 영상ID를 실제 뮤비 ID로 바꿔주시면 됩니다. -->
@@ -76,31 +90,31 @@ const pages = {
             </div>
         </div>
 
-        <div class="shortcut-buttons">
-            <div class="shortcut-btn" onclick="document.querySelector('[data-target=\\'oneclick\\']').click()">원클릭 스밍</div>
-            <div class="shortcut-btn" onclick="document.querySelector('[data-target=\\'support\\']').click()">음총 서포트</div>
-            <div class="shortcut-btn" onclick="document.querySelector('[data-target=\\'radio\\']').click()">라디오 원클릭</div>
+        <div class="pill-btn-grid home-shortcuts">
+            <div class="pill-btn" style="background-color: #F8FBFE;" onclick="document.querySelector('[data-target=\\'oneclick\\']').click()"><span class="pill-icon">🎵</span> 원클릭 스밍</div>
+            <div class="pill-btn" style="background-color: #FEFAED;" onclick="document.querySelector('[data-target=\\'radio\\']').click()"><span class="pill-icon">📻</span> 라디오 원클릭</div>
+            <div class="pill-btn" style="background-color: #F9F1F6;" onclick="document.querySelector('[data-target=\\'support\\']').click()"><span class="pill-icon">🤝</span> 음총 서포트</div>
         </div>
 
         <div class="official-links-wrapper">
             <a href="https://www.youtube.com/@flareu_official" target="_blank" rel="noopener noreferrer" class="official-link-item" title="공식 유튜브">
-                <div class="official-icon-placeholder">YT</div>
+                <img src="image/Home/youtube_icon.png" class="official-icon-img" alt="YT">
                 <span class="official-link-text">공식 유튜브</span>
             </a>
             <a href="https://instagram.com/flareu_official" target="_blank" rel="noopener noreferrer" class="official-link-item" title="공식 인스타그램">
-                <div class="official-icon-placeholder">IG</div>
+                <img src="image/Home/instagram_icon.png" class="official-icon-img" alt="IG">
                 <span class="official-link-text">공식 인스타</span>
             </a>
             <a href="https://x.com/flareu_official" target="_blank" rel="noopener noreferrer" class="official-link-item" title="공식 X">
-                <div class="official-icon-placeholder">X</div>
+                <img src="image/Home/X_icon.png" class="official-icon-img" alt="X">
                 <span class="official-link-text">공식 X</span>
             </a>
             <a href="https://flareu.oopy.io/" target="_blank" rel="noopener noreferrer" class="official-link-item" title="공식 사이트">
-                <div class="official-icon-placeholder">WEB</div>
+                <img src="image/Home/site_icon.png" class="official-icon-img" alt="WEB">
                 <span class="official-link-text">공식 사이트</span>
             </a>
             <a href="https://x.com/FlareU_stream" target="_blank" rel="noopener noreferrer" class="official-link-item" title="음총팀 X">
-                <div class="official-icon-placeholder">X</div>
+                <img src="image/Home/X_icon.png" class="official-icon-img" alt="X">
                 <span class="official-link-text">음총팀 X</span>
             </a>
         </div>
@@ -136,6 +150,7 @@ const pages = {
             <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.flo)">플로</div>
             <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.spotify)">스포티파이</div>
             <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.youtube)">유튜브 뮤비</div>
+            <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.mubit)">뮤빗/하이어 뮤비</div>
             <div class="tab" onclick="changeContent(this, 'streaming-placeholder', streamingContents.samsung)">삼성뮤직(멜론)</div>
         </div>
 
@@ -148,7 +163,7 @@ const pages = {
         <h1 class="page-title">음원 다운로드 가이드</h1>
         <p class="page-desc">다운로드가 정상적으로 집계될 수 있게 가이드를 지켜주세요.</p>
         
-        <div class="tabs">
+        <div class="tabs download-tabs">
             <div class="tab active" onclick="changeContent(this, 'download-placeholder', downloadContents.melon)">멜론 음원</div>
             <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.melonGift)">멜론 선물하기</div>
             <div class="tab" onclick="changeContent(this, 'download-placeholder', downloadContents.bugs)">벅스 음원</div>
@@ -207,17 +222,17 @@ const pages = {
         <p class="page-desc">KBS, MBC, SBS의 주요 라디오 채널을 한 번에 확인하고 스트리밍 가이드를 바로 확인하세요.</p>
 
         <div class="card-grid">
-            <div class="info-card active" style="border-top: 4px solid #DDEA8D;" onclick="changeContent(this, 'radio-placeholder', '<img src=\\'image/Radio/Radio_KBS.png\\' class=\\'guide-img\\' alt=\\'KBS 라디오 상세 가이드\\'>')">
+            <div class="info-card active" style="border-top: 4px solid #DDEA8D;" onclick="changeContent(this, 'radio-placeholder', radioContents.kbs)">
                 <h3>KBS</h3>
                 <p>뮤직뱅크 방송점수 20% 반영!</p>
                 <div class="info-link" style="color:#AEC83E;">가이드 보기 →</div>
             </div>
-            <div class="info-card" style="border-top: 4px solid #7F57DE;" onclick="changeContent(this, 'radio-placeholder', '<img src=\\'image/Radio/Radio_MBC.png\\' class=\\'guide-img\\' alt=\\'MBC 라디오 상세 가이드\\'>')">
+            <div class="info-card" style="border-top: 4px solid #7F57DE;" onclick="changeContent(this, 'radio-placeholder', radioContents.mbc)">
                 <h3>MBC</h3>
                 <p>음악중심 방송점수 10% 반영!</p>
                 <div class="info-link" style="color:#7F57DE;">가이드 보기 →</div>
             </div>
-            <div class="info-card" style="border-top: 4px solid #82C6F8;" onclick="changeContent(this, 'radio-placeholder', '<img src=\\'image/Radio/Radio_SBS.png\\' class=\\'guide-img\\' alt=\\'SBS 라디오 상세 가이드\\'>')">
+            <div class="info-card" style="border-top: 4px solid #82C6F8;" onclick="changeContent(this, 'radio-placeholder', radioContents.sbs)">
                 <h3>SBS</h3>
                 <p>인기가요 방송점수 10% 반영!</p>
                 <div class="info-link" style="color:#82C6F8;">가이드 보기 →</div>
@@ -225,7 +240,7 @@ const pages = {
         </div>
 
         <div id="radio-placeholder">
-            <img src="image/Radio/Radio_KBS.png" class="guide-img" alt="KBS 라디오 상세 가이드">
+            ${radioContents.kbs}
         </div>
     `,
     streaming_basic: `
@@ -250,37 +265,13 @@ const pages = {
             <p class="page-desc" style="margin-bottom:0;">음원 차트 반영을 위한 서포트에 참여해주세요.</p>
         </div>
 
-        <div class="card-grid support-grid">
-            <div class="info-card active" onclick="changeContent(this, 'support-placeholder', supportContents.genie)">
-                <div style="width:40px; height:4px; background:#013972; margin-bottom:20px;"></div>
-                <h3>지니</h3>
-                <p>인증을 통해 지니뮤직 계정을 생성하여 전달해 주세요.</p>
-            </div>
-            <div class="info-card" onclick="changeContent(this, 'support-placeholder', supportContents.bugs)">
-                <div style="width:40px; height:4px; background:#A12D40; margin-bottom:20px;"></div>
-                <h3>벅스</h3>
-                <p>인증을 통해 벅스뮤직 계정을 생성하여 전달해 주세요.</p>
-            </div>
-            <div class="info-card" onclick="changeContent(this, 'support-placeholder', supportContents.dual)">
-                <div style="width:40px; height:4px; background:#71A1D1; margin-bottom:20px;"></div>
-                <h3>듀얼넘버</h3>
-                <p>하나의 폰으로 여러 계정을 생성하는 듀얼넘버 활용법 안내.</p>
-            </div>
-            <div class="info-card" onclick="changeContent(this, 'support-placeholder', supportContents.fund)">
-                <div style="width:40px; height:4px; background:#00B66D; margin-bottom:20px;"></div>
-                <h3>모금</h3>
-                <p>음원총공을 위한 모금에 참여해 주세요.</p>
-            </div>
-            <div class="info-card" onclick="changeContent(this, 'support-placeholder', supportContents.helper)">
-                <div style="width:40px; height:4px; background:#F47216; margin-bottom:20px;"></div>
-                <h3>헬퍼 지원</h3>
-                <p>음원총공을 도와주실 헬퍼를 지원해 주세요.</p>
-            </div>
-            <div class="info-card" onclick="changeContent(this, 'support-placeholder', supportContents.album)">
-                <div style="width:40px; height:4px; background:#00A5F5; margin-bottom:20px;"></div>
-                <h3>앨범 구매</h3>
-                <p>음반 초동을 위한 앨범 구매처를 확인하세요.</p>
-            </div>
+        <div class="pill-btn-grid">
+            <div class="pill-btn active" style="background-color: #EDF3F8;" onclick="changeContent(this, 'support-placeholder', supportContents.genie)"><span class="pill-icon">🧞‍♂️</span> 지니 아이디 기부</div>
+            <div class="pill-btn" style="background-color: #F9EBED;" onclick="changeContent(this, 'support-placeholder', supportContents.bugs)"><span class="pill-icon">🎧</span> 벅스 아이디 기부</div>
+            <div class="pill-btn" style="background-color: #EEF4FA;" onclick="changeContent(this, 'support-placeholder', supportContents.dual)"><span class="pill-icon">📱</span> 듀얼넘버 가이드</div>
+            <div class="pill-btn" style="background-color: #E6F7F1;" onclick="changeContent(this, 'support-placeholder', supportContents.fund)"><span class="pill-icon">💸</span> 모금 참여</div>
+            <div class="pill-btn" style="background-color: #FEF0E7;" onclick="changeContent(this, 'support-placeholder', supportContents.helper)"><span class="pill-icon">🤝</span> 헬퍼 지원</div>
+            <div class="pill-btn" style="background-color: #E5F6FE;" onclick="changeContent(this, 'support-placeholder', supportContents.album)"><span class="pill-icon">💿</span> 앨범 구매</div>
         </div>
 
         <div id="support-placeholder">
