@@ -306,14 +306,14 @@ const navLinks = document.querySelectorAll('.nav-link');
 
 // 원클릭 스트리밍 기기 판별 및 재생 함수
 window.playOneClick = function(platform) {
-    // 1. 기기 판별 (모바일 vs PC)
+    // 1. 기기 및 브라우저 판별
     const userAgent = navigator.userAgent.toLowerCase();
     const isMobile = /iphone|ipad|ipod|android/i.test(userAgent);
     const isAndroid = /android/i.test(userAgent);
     const isIos = /iphone|ipad|ipod/i.test(userAgent);
 
-    if (platform === 'melon' && isAndroid) {
-        // 멜론 안드로이드 팝업
+    // 2. 멜론 팝업 처리 (안드로이드 또는 PC일 때 팝업 노출)
+    if (platform === 'melon' && (isAndroid || !isMobile)) {
         const overlay = document.createElement('div');
         overlay.style.position = 'fixed';
         overlay.style.top = '0';
@@ -333,42 +333,60 @@ window.playOneClick = function(platform) {
         box.style.padding = '30px';
         box.style.borderRadius = '16px';
         box.style.textAlign = 'center';
-        box.style.width = '80%';
-        box.style.maxWidth = '300px';
+        box.style.width = '85%';
+        box.style.maxWidth = '320px';
+        box.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
         box.style.transform = 'translateY(20px)';
         box.style.transition = 'transform 0.2s';
 
         const title = document.createElement('h3');
-        title.innerText = '원클릭 리스트 선택';
+        // 요청하신 대로 문구를 통일했습니다.
+        title.innerHTML = '멜론 리스트 선택<br><span style="font-size:13px; color:#666; font-weight:normal;">(1-4번을 순서대로 담아주세요)</span>';
         title.style.marginBottom = '20px';
         title.style.fontSize = '18px';
+        title.style.lineHeight = '1.4';
         box.appendChild(title);
 
-        const mLinks = [
-            'https://tinyurl.com/szyvmftw',
-            'https://tinyurl.com/y5j2yrs5',
-            'https://tinyurl.com/33vku2cv',
-            'https://tinyurl.com/bdez5xv5'
-        ];
+        // 기기에 따른 링크 세트 설정
+        let melonLinks = [];
+        if (isAndroid) {
+            melonLinks = [
+                'https://tinyurl.com/3xtye6ys', // 안드1
+                'https://tinyurl.com/2524bsw9', // 안드2
+                'https://tinyurl.com/3wsr2e3h', // 안드3
+                'https://tinyurl.com/5cbmsrjm'  // 안드4
+            ];
+        } else {
+            melonLinks = [
+                'https://tinyurl.com/32tw5uh8', // PC1
+                'https://tinyurl.com/3x4wa6de', // PC2
+                'https://tinyurl.com/yc7nf95m', // PC3
+                'https://tinyurl.com/3469jzud'  // PC4
+            ];
+        }
 
-        mLinks.forEach((link, index) => {
+        melonLinks.forEach((link, index) => {
             const btn = document.createElement('button');
-            btn.innerText = `리스트 ${index + 1}`;
+            btn.innerText = `리스트 ${index + 1} 담기`;
             btn.style.display = 'block';
             btn.style.width = '100%';
-            btn.style.padding = '12px';
+            btn.style.padding = '14px';
             btn.style.marginBottom = '10px';
             btn.style.border = 'none';
             btn.style.borderRadius = '8px';
-            btn.style.backgroundColor = '#00D564'; // 멜론 색상
+            btn.style.backgroundColor = '#00D564'; 
             btn.style.color = '#fff';
             btn.style.fontSize = '16px';
             btn.style.fontWeight = 'bold';
             btn.style.cursor = 'pointer';
             
             btn.onclick = () => {
-                window.location.href = link;
-                document.body.removeChild(overlay);
+                if (!isMobile) {
+                    window.open(link, '_blank');
+                } else {
+                    window.location.href = link;
+                    document.body.removeChild(overlay);
+                }
             };
             box.appendChild(btn);
         });
@@ -377,8 +395,8 @@ window.playOneClick = function(platform) {
         closeBtn.innerText = '닫기';
         closeBtn.style.display = 'block';
         closeBtn.style.width = '100%';
-        closeBtn.style.padding = '12px';
-        closeBtn.style.marginTop = '10px';
+        closeBtn.style.padding = '10px';
+        closeBtn.style.marginTop = '5px';
         closeBtn.style.border = '1px solid #ddd';
         closeBtn.style.borderRadius = '8px';
         closeBtn.style.backgroundColor = '#f5f5f5';
@@ -388,7 +406,7 @@ window.playOneClick = function(platform) {
         closeBtn.onclick = () => {
             overlay.style.opacity = '0';
             box.style.transform = 'translateY(20px)';
-            setTimeout(() => document.body.removeChild(overlay), 200);
+            setTimeout(() => { if(overlay.parentNode) document.body.removeChild(overlay); }, 200);
         };
         box.appendChild(closeBtn);
         overlay.appendChild(box);
@@ -402,38 +420,26 @@ window.playOneClick = function(platform) {
         return;
     }
 
-    // 2. 실제 곡 ID 세팅
-    const floList = '564653294,580145350,554618802';
-    const musicwaveLink = 'https://kko.to/euo5M-TL8r';
-    
+    // 3. 그 외 플랫폼별 링크 (iOS 멜론 및 기타 사이트)
     const links = {
         'melon': {
-            ios: 'meloniphone://play/?ctype=1&menuid=0&cid=601956117,601956118,601956120,601956119,601956121,601956122,601956117,601956118,600613582,601956120,601956119,601956117,601956121,601956122,600613582,601956118,601956117,601956120,601956119,601956121,601956122,600613582',
-            pc: 'melonapp://play?cType=1&menuId=1000002721&cList=601956117,601956118,601956120,601956119,601956121,601956122,601956117,601956118,600613582,601956120,601956119,601956117,601956121,601956122,600613582,601956118,601956117,601956120,601956119,601956121,601956122,600613582'
+            ios: 'https://tinyurl.com/4pnmfykf'
         },
         'genie': {
-            android: 'cromegenie://scan/?landing_type=31&landing_target=115011900;115011901;115011903;115011902;115011904;115011905;115011900;115011901;112903134;115011903;115011902;115011900;115011904;115011905;112903134;115011901;115011900;115011903;115011902;115011904;115011905:112903134',
-            ios: 'ktolleh00167://landing/?landing_type=31&landing_target=115011900;115011901;115011903;115011902;115011904;115011905;115011900;115011901;112903134;115011903;115011902;115011900;115011904;115011905;112903134;115011901;115011900;115011903;115011902;115011904;115011905',
-            pc: 'https://www.genie.co.kr/player/shareProcessV2?xgnm=115011900;115011901;115011903;115011902;115011904;115011905;115011900;115011901;112903134;115011903;115011902;115011900;115011904;115011905;112903134;115011901;115011900;115011903;115011902;115011904;115011905'
+            android: 'https://tinyurl.com/3dpkjrmv',
+            ios: 'https://tinyurl.com/mpa9euph',
+            pc: 'https://tinyurl.com/v7ss7np6'
         },
         'bugs': {
-            mobile: 'bugs3://app/tracks/lists?title=%EC%A0%84%EC%B2%B4%EB%93%A3%EA%B8%B0&miniplay=Y&track_ids=6464779|6464780|6464782|6464781|6464783|6464784|6464779|6464780|6384880|6464782|6464781|6464779|6464783|6464784|6384880|6464780|6464779|6464782|6464781|6464783|6464784|6384880',
-            pc: 'https://music.bugs.co.kr/newPlayer?trackId=6464779,6464780,6464782,6464781,6464783,6464784,6464779,6464780,6384880,6464782,6464781,6464779,6464783,6464784,6384880,6464780,6464779,6464782,6464781,6464783,6464784,6384880'
+            mobile: 'https://tinyurl.com/42wv4evz',
+            pc: 'https://tinyurl.com/au67wpkn'
         },
-        'flo': {
-            mobile: null,
-            pc: null
-        },
-        'vibe': { mobile: null, pc: null },
-        'stationhead': { mobile: null, pc: null },
-        'youtube': { mobile: null, pc: null },
-        'musicwave': {
-            mobile: musicwaveLink,
-            pc: musicwaveLink
-        }
+        'flo': { mobile: null, pc: null },
+        'musicwave': { mobile: 'https://kko.to/euo5M-TL8r', pc: 'https://kko.to/euo5M-TL8r' },
+        'stationhead': { mobile: null, pc: null }
     };
 
-    // 3. 기기에 맞는 주소 추출 및 창 열기
+    // 4. 최종 연결 실행
     let targetUrl = null;
     if (isMobile) {
         if (isAndroid && links[platform].android) {
@@ -449,16 +455,8 @@ window.playOneClick = function(platform) {
     
     if(targetUrl) {
         if (!isMobile && targetUrl.startsWith('http')) {
-            // PC 웹 플레이어는 팝업창(새 탭)으로 열기
-            const a = document.createElement('a');
-            a.href = targetUrl;
-            a.target = '_blank';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            window.open(targetUrl, '_blank');
         } else {
-            // 모바일은 딥링크(앱 실행) 처리를 위해 현재 창에서 그대로 연결
-            // (뮤직웨이브 등 웹 주소를 쓰는 경우에도 모바일에서는 앱으로 자동 연결되도록 유도)
             window.location.href = targetUrl;
         }
     } else {
