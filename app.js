@@ -426,9 +426,9 @@ window.playOneClick = function(platform) {
             ios: 'https://tinyurl.com/4pnmfykf'
         },
         'genie': {
-            android: 'https://tinyurl.com/3dpkjrmv',
-            ios: 'https://tinyurl.com/mpa9euph',
-            pc: 'https://tinyurl.com/v7ss7np6'
+            android: 'https://zrr.kr/Yc20tP',
+            ios: 'https://zrr.kr/3YxRw3',
+            pc: 'https://zrr.kr/tZdazh'
         },
         'bugs': {
             mobile: 'https://tinyurl.com/42wv4evz',
