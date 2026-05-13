@@ -426,7 +426,8 @@ window.playOneClick = function(platform) {
             ios: 'https://tinyurl.com/4pnmfykf'
         },
         'genie': {
-            android: 'https://tinyurl.com/3dpkjrmv',
+            // tinyurl 대신 지니 앱을 바로 여는 실제 딥링크 주소를 넣습니다.
+            android: 'cromegenie://scan/?landing_type=31&landing_target=115286596;115286597;115286599;115286598;115286600;115286601;115286596;115286597;112903134;115286599;115286598;115286596;115286600;115286601;112903134;115286597;115286596;115286599;115286598;115286600;115286601;112903134',
             ios: 'https://tinyurl.com/mpa9euph',
             pc: 'https://tinyurl.com/v7ss7np6'
         },
