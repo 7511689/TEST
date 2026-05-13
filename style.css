@@ -351,12 +351,14 @@ body {
 
 /* One Click Streaming */
 .platform-icons {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 16px;
     margin-bottom: 40px;
 }
 .icon-box {
+    width: 150px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 16px;
@@ -458,6 +460,20 @@ body {
 
 /* Guide placeholder */
 .guide-placeholder { height: 800px; }
+
+/* Genie Share Grid */
+.genie-share-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.genie-share-grid .btn-primary {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 12px 10px;
+}
 
 /* Music Show */
 .musicshow-top {
@@ -742,6 +758,12 @@ body {
     .support-grid .info-card p {
         display: none;
     }
+
+    .genie-share-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
     .btn-primary, .btn-outline {
         padding: 10px 16px;
         font-size: 14px;

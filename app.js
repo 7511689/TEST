@@ -28,7 +28,7 @@ const supportContents = {
 const streamingBasicContents = {
     basic: `<img src="image/Streaming_basics/Basic_Streaming_Guide.png" class="guide-img" alt="스트리밍 기초 가이드 이미지">`,
     soundassist: `<img src="image/Streaming_basics/Sound_Assistant_Guide.png" class="guide-img" alt="사운드 어시스턴트 가이드 이미지">`,
-    automate: `<div class="placeholder-box guide-placeholder">오토메이트 가이드 이미지</div>`,
+    automate: `<div class="placeholder-box guide-placeholder">오토메이트 가이드 업데이트 예정</div>`,
     duckad: `<div class="img-sequence"><img src="image/Streaming_basics/Duckad_Guide1.png" class="guide-img" alt="덕애드 가이드 1"><img src="image/Streaming_basics/Duckad_Guide2.png" class="guide-img" alt="덕애드 가이드 2"><img src="image/Streaming_basics/Duckad_Guide3.png" class="guide-img" alt="덕애드 가이드 3"></div>`
 };
 
@@ -37,19 +37,20 @@ const streamingContents = {
     melon: `<div class="img-sequence"><img src="image/streaming_guide/melon_guide_1.png" class="guide-img" alt="멜론스밍가이드_1"><img src="image/streaming_guide/melon_guide_2.png" class="guide-img" alt="멜론스밍가이드_2"></div>`,
     bugs: `<div class="img-sequence"><img src="image/streaming_guide/bugs_guide_1.png" class="guide-img" alt="벅스스밍가이드_1"><img src="image/streaming_guide/bugs_guide_2.png" class="guide-img" alt="벅스스밍가이드_2"></div>`,
     genie: `<div class="img-sequence"><img src="image/streaming_guide/genie_guide.png" class="guide-img" alt="지니스밍가이드"><img src="image/streaming_guide/genie_guide_app_setting.png" class="guide-img" alt="지니앱설정"></div>`,
-    genieShare: `<div style="text-align: center; margin-bottom: 24px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기1</a>
-        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기2</a>
-        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기3</a>
-        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기4</a>
-        <a href="#" target="_blank" class="btn-primary" style="padding: 12px 20px; font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기5</a>
+    genieShare: `<div class="genie-share-grid">
+        <a href="https://www.genie.co.kr/5EKID8" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기1</a>
+        <a href="https://www.genie.co.kr/TRIZE8" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기2</a>
+        <a href="https://www.genie.co.kr/8PKUC7" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기3</a>
+        <a href="https://www.genie.co.kr/0NGDH7" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기4</a>
+        <a href="https://www.genie.co.kr/TEB518" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기5</a>
+        <a href="https://www.genie.co.kr/JQ12F1" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기6</a>
     </div>
     <img src="image/streaming_guide/Genie_Music_Sharing_Guide.png" class="guide-img" alt="지니 음악나누기 가이드 이미지">`,
     flo: `<div class="img-sequence"><img src="image/streaming_guide/flo_guide.png" class="guide-img" alt="플로스밍가이드"><img src="image/streaming_guide/flo_app_setting_guide.png" class="guide-img" alt="플로앱설정"></div>`,
     spotify: `<div class="img-sequence"><img src="image/streaming_guide/Spotify_Streaming_Guide.png" class="guide-img" alt="스포티파이 스트리밍 가이드"><img src="image/streaming_guide/Spotify_App_Settings_Guide.png" class="guide-img" alt="스포티파이 앱설정 가이드"><img src="image/streaming_guide/Spotify_Playlist_Guide.png" class="guide-img" alt="스포티파이 플레이리스트 가이드"><img src="image/streaming_guide/Spotify_Streaming_Guide_Eng.png" class="guide-img" alt="스포티파이 영어 스트리밍 가이드"><img src="image/streaming_guide/Spotify_App_Settings_Guide_Eng.png" class="guide-img" alt="스포티파이 영어 앱설정 가이드"></div>`,
     youtube: `<div class="img-sequence"><img src="image/streaming_guide/YouTube_music_video_streaming_guide.png" class="guide-img" alt="유튜브 뮤비 스트리밍 가이드"><img src="image/streaming_guide/YouTube_music_video_streaming_guide_Eng.png" class="guide-img" alt="유튜브 뮤비 스트리밍 가이드(영문)"></div>`,
     mubit: `<div class="img-sequence"><img src="image/streaming_guide/Mubit_Video_Guide.png" class="guide-img" alt="뮤빗 가이드"><img src="image/streaming_guide/Higher_Video_Guide.png" class="guide-img" alt="하이어 뮤비 가이드"></div>`,
-    samsung: `<div class="placeholder-box guide-placeholder">삼성뮤직(멜론) 가이드 이미지</div>`
+    samsung: `<div class="placeholder-box guide-placeholder">삼성뮤직(멜론) 가이드 업데이트 예정</div>`
 };
 
 const downloadContents = {
@@ -57,9 +58,9 @@ const downloadContents = {
     melonGift: `<img src="image/download_guide/Melon_Gift_Guide1.jpg" class="guide-img" alt="멜론 선물하기 가이드 이미지">`,
     bugs: `<div class="img-sequence"><img src="image/download_guide/bugs_mobile.png" class="guide-img" alt="벅스다운모바일"><img src="image/download_guide/bugs_pc.png" class="guide-img" alt="벅스다운PC"></div>`,
     genie: `<div class="img-sequence"><img src="image/download_guide/genie_mobile.png" class="guide-img" alt="지니다운모바일"><img src="image/download_guide/genie_pc.png" class="guide-img" alt="지니다운PC"></div>`,
-    mv: `<div class="placeholder-box guide-placeholder">뮤비 다운로드 가이드 이미지</div>`,
+    mv: `<div class="placeholder-box guide-placeholder">뮤비 다운로드 가이드 업데이트 예정</div>`,
     kakao: `<img src="image/download_guide/KakaoMusic_Down_Guide.png" class="guide-img" alt="카카오뮤직 다운로드 가이드 이미지">`,
-    vcolor: `<div class="placeholder-box guide-placeholder">V컬러링 가이드 이미지</div>`
+    vcolor: `<div class="placeholder-box guide-placeholder">V컬러링 가이드 업데이트 예정</div>`
 };
 
 const musicshowContents = {
@@ -84,7 +85,7 @@ const pages = {
         </div>
         <div class="youtube-mv" style="border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
             <!-- 하단의 src="https://www.youtube.com/embed/영상ID" 부분의 영상ID를 실제 뮤비 ID로 바꿔주시면 됩니다. -->
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/bHgc0kmHYTA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dyxmlYXdxUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
         </div>
         
         <div class="carousel-container" id="main-carousel">
@@ -145,8 +146,7 @@ const pages = {
             <div class="icon-box" onclick="changeContent(this); playOneClick('bugs')"><img src="image/oneclick_streaming/bugs.png" class="icon-img" alt="벅스"><span class="icon-name">벅스</span></div>
             <div class="icon-box" onclick="changeContent(this); playOneClick('genie')"><img src="image/oneclick_streaming/genie.png" class="icon-img" alt="지니"><span class="icon-name">지니</span></div>
             <div class="icon-box" onclick="changeContent(this); playOneClick('flo')"><img src="image/oneclick_streaming/flo.png" class="icon-img" alt="플로"><span class="icon-name">플로</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('spotify')"><img src="image/oneclick_streaming/spotify.png" class="icon-img" alt="스포티파이"><span class="icon-name">스포티파이</span></div>
-            <div class="icon-box" onclick="changeContent(this); playOneClick('apple')"><img src="image/oneclick_streaming/applemusic_logo.webp" class="icon-img" alt="애플"><span class="icon-name">애플뮤직</span></div>
+            <div class="icon-box" onclick="changeContent(this); playOneClick('stationhead')"><img src="image/oneclick_streaming/stationhead_icon.png" class="icon-img" alt="스테이션헤드"><span class="icon-name">스테이션헤드</span></div>
             <div class="icon-box" onclick="changeContent(this); playOneClick('musicwave')"><img src="image/oneclick_streaming/melon_musicwave.png" class="icon-img" alt="뮤직웨이브"><span class="icon-name">뮤직웨이브</span></div>
         </div>
 
@@ -309,50 +309,143 @@ window.playOneClick = function(platform) {
     // 1. 기기 판별 (모바일 vs PC)
     const userAgent = navigator.userAgent.toLowerCase();
     const isMobile = /iphone|ipad|ipod|android/i.test(userAgent);
-
-    // 2. 실제 곡 ID 세팅 (3곡 기준)
-    const melonList = '600613582,601556257,600076127';
-    const bugsList = '6384880|6440465|6345003';
-    const bugsPcList = '6384880,6440465,6345003';
-    const genieList = '112903134;114309403;111739510';
-    const floList = '564653294,580145350,554618802';
-    const musicwaveLink = 'https://musicwave.melon.com/musicwave.htm?a=Y&m=pY_guuANgzNwZKN8mCNOcA';
-    
-    // 안드로이드 환경에서는 intent 스킴을 사용하여 멜론 앱을 강제로 열어줍니다.
     const isAndroid = /android/i.test(userAgent);
-    const musicwaveMobile = isAndroid 
-        ? 'intent://musicwave.melon.com/musicwave.htm?a=Y&m=pY_guuANgzNwZKN8mCNOcA#Intent;scheme=https;package=com.iloen.melon;end'
-        : musicwaveLink;
+    const isIos = /iphone|ipad|ipod/i.test(userAgent);
+
+    if (platform === 'melon' && isAndroid) {
+        // 멜론 안드로이드 팝업
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0,0,0,0.6)';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+        overlay.style.zIndex = '3000';
+        overlay.style.opacity = '0';
+        overlay.style.transition = 'opacity 0.2s';
+
+        const box = document.createElement('div');
+        box.style.background = '#fff';
+        box.style.padding = '30px';
+        box.style.borderRadius = '16px';
+        box.style.textAlign = 'center';
+        box.style.width = '80%';
+        box.style.maxWidth = '300px';
+        box.style.transform = 'translateY(20px)';
+        box.style.transition = 'transform 0.2s';
+
+        const title = document.createElement('h3');
+        title.innerText = '원클릭 리스트 선택';
+        title.style.marginBottom = '20px';
+        title.style.fontSize = '18px';
+        box.appendChild(title);
+
+        const mLinks = [
+            'https://tinyurl.com/szyvmftw',
+            'https://tinyurl.com/y5j2yrs5',
+            'https://tinyurl.com/33vku2cv',
+            'https://tinyurl.com/bdez5xv5'
+        ];
+
+        mLinks.forEach((link, index) => {
+            const btn = document.createElement('button');
+            btn.innerText = `리스트 ${index + 1}`;
+            btn.style.display = 'block';
+            btn.style.width = '100%';
+            btn.style.padding = '12px';
+            btn.style.marginBottom = '10px';
+            btn.style.border = 'none';
+            btn.style.borderRadius = '8px';
+            btn.style.backgroundColor = '#00D564'; // 멜론 색상
+            btn.style.color = '#fff';
+            btn.style.fontSize = '16px';
+            btn.style.fontWeight = 'bold';
+            btn.style.cursor = 'pointer';
+            
+            btn.onclick = () => {
+                window.location.href = link;
+                document.body.removeChild(overlay);
+            };
+            box.appendChild(btn);
+        });
+
+        const closeBtn = document.createElement('button');
+        closeBtn.innerText = '닫기';
+        closeBtn.style.display = 'block';
+        closeBtn.style.width = '100%';
+        closeBtn.style.padding = '12px';
+        closeBtn.style.marginTop = '10px';
+        closeBtn.style.border = '1px solid #ddd';
+        closeBtn.style.borderRadius = '8px';
+        closeBtn.style.backgroundColor = '#f5f5f5';
+        closeBtn.style.fontSize = '14px';
+        closeBtn.style.cursor = 'pointer';
+        
+        closeBtn.onclick = () => {
+            overlay.style.opacity = '0';
+            box.style.transform = 'translateY(20px)';
+            setTimeout(() => document.body.removeChild(overlay), 200);
+        };
+        box.appendChild(closeBtn);
+        overlay.appendChild(box);
+        document.body.appendChild(overlay);
+
+        setTimeout(() => {
+            overlay.style.opacity = '1';
+            box.style.transform = 'translateY(0)';
+        }, 10);
+        
+        return;
+    }
+
+    // 2. 실제 곡 ID 세팅
+    const floList = '564653294,580145350,554618802';
+    const musicwaveLink = 'https://kko.to/euo5M-TL8r';
     
     const links = {
         'melon': {
-            mobile: `melonapp://play?cType=1&cList=${melonList}`,
-            pc: null
+            ios: 'https://zrr.kr/QYEXZV',
+            pc: 'https://tinyurl.com/4ssxfv68'
         },
         'genie': {
-            mobile: `geniemusic://play?smlist=${genieList}`,
-            pc: `https://genie.co.kr/player/shareProcessV2?xgnm=${genieList}`
+            android: 'https://zrr.kr/Idv5JB',
+            ios: 'https://zrr.kr/2w3uPV',
+            pc: 'https://zrr.kr/uEz1Vd'
         },
         'bugs': {
-            mobile: `bugs3://app/tracks/play?track_id=${bugsList}`,
-            pc: `https://music.bugs.co.kr/newPlayer?trackId=${bugsPcList}`
+            mobile: 'https://tinyurl.com/ymyncftw',
+            pc: 'https://tinyurl.com/3p4rprdm'
         },
         'flo': {
-            mobile: `flomusic://play?trackIds=${floList}`,
+            mobile: null,
             pc: null
         },
         'vibe': { mobile: null, pc: null },
-        'spotify': { mobile: null, pc: null },
-        'apple': { mobile: null, pc: null },
+        'stationhead': { mobile: null, pc: null },
         'youtube': { mobile: null, pc: null },
         'musicwave': {
-            mobile: musicwaveMobile,
+            mobile: musicwaveLink,
             pc: musicwaveLink
         }
     };
 
     // 3. 기기에 맞는 주소 추출 및 창 열기
-    const targetUrl = isMobile ? links[platform].mobile : links[platform].pc;
+    let targetUrl = null;
+    if (isMobile) {
+        if (isAndroid && links[platform].android) {
+            targetUrl = links[platform].android;
+        } else if (isIos && links[platform].ios) {
+            targetUrl = links[platform].ios;
+        } else {
+            targetUrl = links[platform].mobile;
+        }
+    } else {
+        targetUrl = links[platform].pc;
+    }
     
     if(targetUrl) {
         if (!isMobile && targetUrl.startsWith('http')) {
@@ -369,16 +462,7 @@ window.playOneClick = function(platform) {
             window.location.href = targetUrl;
         }
     } else {
-        const platformNames = {
-            'melon': '멜론', 'genie': '지니', 'bugs': '벅스', 'flo': '플로', 
-            'vibe': '바이브', 'spotify': '스포티파이', 'youtube': '유튜브 뮤직', 'musicwave': '뮤직웨이브'
-        };
-        
-        if (!isMobile && (platform === 'melon' || platform === 'flo' || platform === 'vibe')) {
-            alert(`${platformNames[platform]} 원클릭은 모바일만 지원 가능합니다.`);
-        } else {
-            alert('해당 플랫폼은 스밍표 작업 중입니다. 잠시만 기다려주세요!');
-        }
+        alert('업데이트 예정입니다!');
     }
 }
 
