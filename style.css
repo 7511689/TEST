@@ -286,6 +286,26 @@ body {
     border-radius: 8px;
 }
 
+.btn-outline {
+    background-color: #FFFFFF !important;
+    border: 1px solid var(--border-color);
+    border-radius: 50px !important;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.btn-outline:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(94, 176, 237, 0.15);
+}
+
 /* Pill Button Grid */
 .pill-btn-grid {
     display: grid;
