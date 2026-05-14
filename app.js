@@ -58,9 +58,9 @@ const downloadContents = {
     melonGift: `<img src="image/download_guide/Melon_Gift_Guide1.jpg" class="guide-img" alt="멜론 선물하기 가이드 이미지">`,
     bugs: `<div class="img-sequence"><img src="image/download_guide/bugs_mobile.png" class="guide-img" alt="벅스다운모바일"><img src="image/download_guide/bugs_pc.png" class="guide-img" alt="벅스다운PC"></div>`,
     genie: `<div class="img-sequence"><img src="image/download_guide/genie_mobile.png" class="guide-img" alt="지니다운모바일"><img src="image/download_guide/genie_pc.png" class="guide-img" alt="지니다운PC"></div>`,
-    mv: `<div class="placeholder-box guide-placeholder">뮤비 다운로드 가이드 업데이트 예정</div>`,
-    kakao: `<img src="image/download_guide/KakaoMusic_Down_Guide.png" class="guide-img" alt="카카오뮤직 다운로드 가이드 이미지">`,
-    vcolor: `<div class="placeholder-box guide-placeholder">V컬러링 가이드 업데이트 예정</div>`
+    mv: `<div class="img-sequence"><img src="image/download_guide/MV_download1.png" class="guide-img" alt="뮤비 다운로드 가이드"></div>`,
+    kakao: `<div class="img-sequence"><img src="image/download_guide/KakaoMusic_Down_Guide.png" class="guide-img" alt="카카오뮤직 다운로드 가이드 이미지"><img src="image/download_guide/KakaoMusic_Down_Guide2.png" class="guide-img" alt="카카오뮤직 다운로드 가이드 2"></div>`,
+    vcolor: `<img src="image/download_guide/Vcalling_Guide.png" class="guide-img" alt="V컬러링 가이드 이미지">`
 };
 
 const musicshowContents = {
@@ -134,6 +134,10 @@ const pages = {
             <a href="https://x.com/FlareU_stream" target="_blank" rel="noopener noreferrer" class="official-link-item" title="음총팀 X">
                 <img src="image/Home/X_icon.png" class="official-icon-img" alt="X">
                 <span class="official-link-text">음총팀 X</span>
+            </a>
+            <a href="https://x.com/FlareU_chart" target="_blank" rel="noopener noreferrer" class="official-link-item" title="음총 차트 X">
+                <img src="image/Home/X_icon.png" class="official-icon-img" alt="X">
+                <span class="official-link-text">음총 차트 X</span>
             </a>
         </div>
     `,
