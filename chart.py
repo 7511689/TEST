@@ -5,7 +5,7 @@ import time
 from playwright.sync_api import sync_playwright
 
 def wait_until_top_of_hour():
-    # 55분에 시작했을 경우 정시(00분)가 될 때까지 서버를 점유하고 대기합니다.
+    # 55분에 미리 깨어난 일꾼이 정시(00분)까지 서버를 점유하고 기다립니다.
     while True:
         now = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
         if now.minute == 0: 
@@ -18,9 +18,9 @@ def get_rank_full_search(page, url, song_title="WAY 2 U"):
     try:
         page.goto(url, wait_until="networkidle", timeout=60000)
         
-        # 최대 3페이지(250위)까지 넘기며 찾습니다.
+        # 1위부터 250위까지 3개 페이지를 샅샅이 뒤집니다.
         for page_num in range(1, 4):
-            page.wait_for_timeout(7000)
+            page.wait_for_timeout(8000) # 이미지/아이콘 로딩 대기 시간 확보
             rows = page.query_selector_all('tr, li, .chart-item')
             
             for row in rows:
@@ -28,28 +28,30 @@ def get_rank_full_search(page, url, song_title="WAY 2 U"):
                 inner_text = row.inner_text()
                 
                 if song_title in inner_text:
-                    # 데이터 분리
+                    # 1. 순위: 텍스트의 첫 줄에서 숫자만 추출
                     parts = [p.strip() for p in inner_text.split('\n') if p.strip()]
                     rank = "".join(filter(str.isdigit, parts[0])) if parts else "OUT"
                     
-                    # 변동 기호 및 숫자 정밀 포착 (HTML 소스 분석)
+                    # 2. 변동: 드래그 안 되는 아이콘(이미지/클래스)을 HTML 소스에서 직접 포착
                     diff = "-"
-                    if '↑' in inner_html or '▲' in inner_html:
+                    # 'up'이나 '상승' 의미가 포함된 코드/이미지 감지
+                    if '↑' in inner_html or 'up' in inner_html.lower() or 'ico_up' in inner_html:
                         val = "".join(filter(str.isdigit, parts[1])) if len(parts) > 1 else ""
                         diff = f"▲{val}" if val else "▲"
-                    elif '↓' in inner_html or '▼' in inner_html:
+                    # 'down'이나 '하락' 의미가 포함된 코드/이미지 감지
+                    elif '↓' in inner_html or 'down' in inner_html.lower() or 'ico_down' in inner_html:
                         val = "".join(filter(str.isdigit, parts[1])) if len(parts) > 1 else ""
                         diff = f"▼{val}" if val else "▼"
-                    elif 'NEW' in inner_html.upper():
+                    elif 'NEW' in inner_html.upper() or 'ico_new' in inner_html:
                         diff = "NEW"
                         
                     return rank, diff
 
-            # 현재 페이지에 없으면 다음 페이지 버튼 클릭
+            # 다음 페이지로 넘어가는 버튼 클릭
             next_btn = page.query_selector(f'a.page-link:has-text("{page_num + 1}")')
             if next_btn:
                 next_btn.click()
-                print(f"👉 {page_num + 1}페이지로 이동하여 계속 탐색합니다.", flush=True)
+                print(f"👉 {page_num + 1}페이지로 이동 중...", flush=True)
             else: break
             
         return "OUT", "-"
@@ -58,16 +60,16 @@ def get_rank_full_search(page, url, song_title="WAY 2 U"):
 
 def main():
     now_check = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
-    # 50분~59분 사이 실행 시 정시까지 대기
+    # 정시성 확보를 위해 50분~59분 사이 실행 시 정시까지 대기
     if 50 <= now_check.minute <= 59:
         wait_until_top_of_hour()
     
-    print("🚀 차트 수집을 시작합니다...", flush=True)
+    print("🚀 수집을 시작합니다...", flush=True)
     
+    # 유튜브 API 조회수 수집
     yt_key = "AIzaSyBRTNyWBiZaVnOP5NPu9Nmhj4G-SQBLoPc"
     vid_id = "dyxmlYXdxUs"
     mv_views = "0"
-    
     try:
         res = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={vid_id}&key={yt_key}&part=statistics").json()
         mv_views = "{:,}".format(int(res['items'][0]['statistics']['viewCount']))
@@ -77,6 +79,7 @@ def main():
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         
+        # 멜론, 지니, 벅스 전수 조사 (250위까지)
         m30_r, m30_d = get_rank_full_search(page, "https://가이섬.com/chart/melon/hot100-d30")
         m100_r, m100_d = get_rank_full_search(page, "https://가이섬.com/chart/melon/hot100-d100")
         genie_r, genie_d = get_rank_full_search(page, "https://가이섬.com/chart/genie/realtime")
@@ -96,7 +99,7 @@ def main():
 
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print(f"✅ 수집 완료: {data}", flush=True)
+    print(f"✅ 최종 결과: {data}", flush=True)
 
 if __name__ == "__main__":
     main()
