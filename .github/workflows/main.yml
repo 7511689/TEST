@@ -5,6 +5,11 @@ on:
     - cron: '30 * * * *'
   workflow_dispatch:
 
+# [추가] 앞선 작업이 끝날 때까지 뒤의 작업은 대기열(Queue)에서 기다립니다.
+concurrency:
+  group: chart-update-group
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
