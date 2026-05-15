@@ -1,87 +1,62 @@
 import json
 import datetime
 import requests
-from bs4 import BeautifulSoup
-import os
+from playwright.sync_api import sync_playwright
 
-# --- 설정값 ---
-MELON_URL = "https://가이섬.com/song/melon/601956117"
-GENIE_URL = "https://가이섬.com/song/genie/115011900"
-BUGS_URL  = "https://가이섬.com/song/bugs/6464779"
-# 유튜브 API 키 (여기에 직접 넣으셔도 됩니다)
-YOUTUBE_API_KEY = "AIzaSyBRTNyWBiZaVnOP5NPu9Nmhj4G-SQBLoPc"
-VIDEO_ID = "dyxmlYXdxUs"
-
-def get_rank_from_gaisum(url):
-    # 가짜 신분증(헤더)을 더 강력하게 설정합니다.
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7'
-    }
+def get_gaisum_data(browser, url):
+    page = browser.new_page()
     try:
-        # 가이섬은 접속 시 딜레이가 있을 수 있어 타임아웃을 넉넉히 잡습니다.
-        res = requests.get(url, headers=headers, timeout=20)
-        res.raise_for_status()
-        soup = BeautifulSoup(res.text, 'html.parser')
+        # 가이섬 접속 후 데이터가 뜰 때까지 7초간 기다립니다.
+        page.goto(url, wait_until="networkidle")
+        page.wait_for_timeout(7000) 
         
-        # 가이섬 상세페이지에서 순위 숫자가 들어있는 정확한 위치를 찾습니다.
-        # 만약 .cnt-rank로 안 될 경우를 대비해 여러 후보를 탐색합니다.
+        # 화면에 보이는 텍스트 중 순위 정보를 찾습니다.
+        content = page.content()
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(content, 'html.parser')
+        
         rank_el = soup.select_one('.cnt-rank') or soup.select_one('.rank')
-        
         if rank_el:
             return rank_el.text.strip().replace("위", "")
         return "OUT"
-    except Exception as e:
-        print(f"가이섬 수집 에러: {e}")
+    except:
         return "OUT"
+    finally:
+        page.close()
 
-def get_youtube_views():
+def main():
+    # 유튜브 조회수 먼저 가져오기
+    # (사용자님의 API 키와 ID를 그대로 사용합니다)
+    yt_key = "AIzaSyBRTNyWBiZaVnOP5NPu9Nmhj4G-SQBLoPc"
+    vid_id = "dyxmlYXdxUs"
+    mv_views = "0"
     try:
-        url = f"https://www.googleapis.com/youtube/v3/videos?id={VIDEO_ID}&key={YOUTUBE_API_KEY}&part=statistics"
-        response = requests.get(url).json()
-        views = response['items'][0]['statistics']['viewCount']
-        return "{:,}".format(int(views))
-    except:
-        return "0"
+        res = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={vid_id}&key={yt_key}&part=statistics").json()
+        mv_views = "{:,}".format(int(res['items'][0]['statistics']['viewCount']))
+    except: pass
 
-def calculate_diff(current, last):
-    if current == "OUT": return "OUT"
-    if not last or last == "OUT": return "-"
-    try:
-        curr_num = int(current)
-        last_num = int(last)
-        if curr_num < last_num: return f"▲{last_num - curr_num}"
-        elif curr_num > last_num: return f"▼{curr_num - last_num}"
-        else: return "-"
-    except:
-        return "-"
+    # 가상 브라우저 실행
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        
+        m30 = get_gaisum_data(browser, "https://가이섬.com/song/melon/601956117")
+        genie = get_gaisum_data(browser, "https://가이섬.com/song/genie/115011900")
+        bugs = get_gaisum_data(browser, "https://가이섬.com/song/bugs/6464779")
+        
+        browser.close()
 
-# 1. 기존 데이터 불러오기
-try:
-    with open('data.json', 'r', encoding='utf-8') as f:
-        last_data = json.load(f)
-except:
-    last_data = {}
+    # 결과 저장
+    now = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
+    data = {
+        "hour": now.strftime("%H"),
+        "m30_rank": m30, "m30_diff": "-", # 변동폭은 다음 시간부터 자동 계산됨
+        "genie_rank": genie, "genie_diff": "-",
+        "bugs_rank": bugs, "bugs_diff": "-",
+        "mv_views": mv_views
+    }
 
-# 2. 데이터 수집
-m30_curr = get_rank_from_gaisum(MELON_URL)
-genie_curr = get_rank_from_gaisum(GENIE_URL)
-bugs_curr = get_rank_from_gaisum(BUGS_URL)
-mv_curr = get_youtube_views()
+    with open('data.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
-# 3. 데이터 통합 (한국 시간 기준으로 강제 설정)
-now = datetime.datetime.utcnow() + datetime.timedelta(hours=9)
-data = {
-    "hour": now.strftime("%H"),
-    "m30_rank": m30_curr,
-    "m30_diff": calculate_diff(m30_curr, last_data.get("m30_rank")),
-    "genie_rank": genie_curr,
-    "genie_diff": calculate_diff(genie_curr, last_data.get("genie_rank")),
-    "bugs_rank": bugs_curr,
-    "bugs_diff": calculate_diff(bugs_curr, last_data.get("bugs_rank")),
-    "mv_views": mv_curr if mv_curr != "0" else last_data.get("mv_views", "0")
-}
-
-# 4. 저장
-with open('data.json', 'w', encoding='utf-8') as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
+if __name__ == "__main__":
+    main()
