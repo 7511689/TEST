@@ -1,7 +1,8 @@
 name: Hourly Chart Update
 on:
   schedule:
-    - cron: '5 0-16 * * *' 
+    # 매시 55분에 미리 실행을 시작하여 정시 정체를 피합니다.
+    - cron: '55 * * * *' 
   workflow_dispatch:
 jobs:
   build:
@@ -18,8 +19,6 @@ jobs:
           playwright install chromium
       - name: Run collector
         run: python chart.py
-        env:
-          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       - name: Commit and Push
         run: |
           git config --global user.name "ChartBot"
