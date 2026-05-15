@@ -197,8 +197,112 @@ body {
     aspect-ratio: 16 / 9;
     max-height: 600px;
     margin-top: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 32px;
 }
+
+/* Chart Section */
+.chart-section {
+    margin-bottom: 40px;
+}
+.chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+.chart-badge {
+    background: #E5F3FD;
+    color: #1072B8;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+}
+.chart-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Pretendard', sans-serif;
+}
+.chart-copy-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(94, 176, 237, 0.15);
+}
+.chart-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+.chart-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 18px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.chart-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.chart-card-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 10px;
+}
+.chart-melon .chart-card-header { border-color: #00cd3c; }
+.chart-genie .chart-card-header { border-color: #0095cd; }
+.chart-bugs  .chart-card-header { border-color: #ff3b30; }
+.chart-youtube .chart-card-header { border-color: #e62117; }
+
+.chart-platform-name {
+    font-size: 17px;
+    font-weight: 800;
+}
+.chart-melon   .chart-platform-name { color: #00cd3c; }
+.chart-genie   .chart-platform-name { color: #0095cd; }
+.chart-bugs    .chart-platform-name { color: #ff3b30; }
+.chart-youtube .chart-platform-name { color: #e62117; }
+
+.chart-update-time {
+    font-size: 11px;
+    color: #aaa;
+    font-weight: 500;
+}
+.chart-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.chart-rank-row {
+    font-size: 13px;
+    color: var(--text-sub);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+}
+.chart-rank-value {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
 /* Carousel Banner */
 .carousel-container {
     width: 100%;
@@ -702,6 +806,27 @@ body {
     }
     .pill-icon {
         font-size: 16px;
+    }
+    /* 차트 모바일: 2열 2행 */
+    .chart-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .chart-card {
+        padding: 14px 16px;
+        border-radius: 12px;
+    }
+    .chart-platform-name {
+        font-size: 15px;
+    }
+    .chart-rank-row {
+        font-size: 12px;
+    }
+    .chart-rank-value {
+        font-size: 13px;
+    }
+    .chart-copy-btn span.copy-label {
+        display: none;
     }
     .platform-icons {
         display: flex;

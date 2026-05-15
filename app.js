@@ -87,7 +87,57 @@ const pages = {
             <!-- 하단의 src="https://www.youtube.com/embed/영상ID" 부분의 영상ID를 실제 뮤비 ID로 바꿔주시면 됩니다. -->
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dyxmlYXdxUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
         </div>
-        
+
+        <!-- 실시간 차트 섹션 -->
+        <div class="chart-section">
+            <div class="chart-header">
+                <span class="chart-badge">실시간 차트</span>
+                <button class="chart-copy-btn" id="chart-copy-btn" onclick="copyChartReport()" title="리포트 복사">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    리포트 복사
+                </button>
+            </div>
+            <div class="chart-cards">
+                <div class="chart-card chart-melon">
+                    <div class="chart-card-header">
+                        <span class="chart-platform-name">Melon</span>
+                        <span class="chart-update-time" id="chart-time-m">-- 기준</span>
+                    </div>
+                    <div class="chart-card-body">
+                        <p class="chart-rank-row" id="chart-m30">HOT100 (30일) <span class="chart-rank-value">--</span></p>
+                        <p class="chart-rank-row" id="chart-m100">HOT100 (100일) <span class="chart-rank-value">--</span></p>
+                    </div>
+                </div>
+                <div class="chart-card chart-genie">
+                    <div class="chart-card-header">
+                        <span class="chart-platform-name">Genie</span>
+                        <span class="chart-update-time" id="chart-time-g">-- 기준</span>
+                    </div>
+                    <div class="chart-card-body">
+                        <p class="chart-rank-row" id="chart-genie">실시간 차트 <span class="chart-rank-value">--</span></p>
+                    </div>
+                </div>
+                <div class="chart-card chart-bugs">
+                    <div class="chart-card-header">
+                        <span class="chart-platform-name">Bugs</span>
+                        <span class="chart-update-time" id="chart-time-b">-- 기준</span>
+                    </div>
+                    <div class="chart-card-body">
+                        <p class="chart-rank-row" id="chart-bugs">실시간 차트 <span class="chart-rank-value">--</span></p>
+                    </div>
+                </div>
+                <div class="chart-card chart-youtube">
+                    <div class="chart-card-header">
+                        <span class="chart-platform-name">YouTube MV</span>
+                        <span class="chart-update-time" id="chart-time-y">-- 기준</span>
+                    </div>
+                    <div class="chart-card-body">
+                        <p class="chart-rank-row" id="chart-mv">조회수 <span class="chart-rank-value">--</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="carousel-container" id="main-carousel">
             <div class="carousel-track" id="carousel-track">
                 <a href="#" class="carousel-item" onclick="gotoTab('streaming', '음악나누기'); return false;">
@@ -551,6 +601,7 @@ function renderPage(pageId) {
     
     if (pageId === 'home') {
         startCarousel();
+        loadChartData();
     }
 }
 
@@ -567,6 +618,126 @@ navLinks.forEach(link => {
 window.addEventListener('DOMContentLoaded', () => {
     renderPage('home');
 });
+
+// --- 실시간 차트 로직 ---
+// 원본 데이터 보관 (복사 기능에서 사용)
+window._chartRawData = null;
+
+// data.json fetch → 차트 카드 업데이트
+window.loadChartData = function() {
+    fetch('./data.json?t=' + new Date().getTime())
+        .then(res => {
+            if (!res.ok) throw new Error('data.json not found');
+            return res.json();
+        })
+        .then(data => {
+            window._chartRawData = data;
+            const timeLabel = `${data.hour}:00 기준`;
+
+            // 시간 레이블
+            ['chart-time-m', 'chart-time-g', 'chart-time-b', 'chart-time-y'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = timeLabel;
+            });
+
+            // 멜론 HOT100 (30일)
+            const m30el = document.getElementById('chart-m30');
+            if (m30el) {
+                const rankSpan = m30el.querySelector('.chart-rank-value');
+                if (rankSpan) rankSpan.textContent = formatChartWeb(data.m30_rank, data.m30_diff);
+            }
+
+            // 멜론 HOT100 (100일)
+            const m100el = document.getElementById('chart-m100');
+            if (m100el) {
+                if (data.m100_rank === 'OUT') {
+                    m100el.style.display = 'none';
+                } else {
+                    m100el.style.display = '';
+                    const rankSpan = m100el.querySelector('.chart-rank-value');
+                    if (rankSpan) rankSpan.textContent = formatChartWeb(data.m100_rank, data.m100_diff);
+                }
+            }
+
+            // 지니
+            const genieEl = document.getElementById('chart-genie');
+            if (genieEl) {
+                const rankSpan = genieEl.querySelector('.chart-rank-value');
+                if (rankSpan) rankSpan.textContent = formatChartWeb(data.genie_rank, data.genie_diff);
+            }
+
+            // 벅스
+            const bugsEl = document.getElementById('chart-bugs');
+            if (bugsEl) {
+                const rankSpan = bugsEl.querySelector('.chart-rank-value');
+                if (rankSpan) rankSpan.textContent = formatChartWeb(data.bugs_rank, data.bugs_diff);
+            }
+
+            // 유튜브 MV 조회수
+            const mvEl = document.getElementById('chart-mv');
+            if (mvEl) {
+                const rankSpan = mvEl.querySelector('.chart-rank-value');
+                if (rankSpan) rankSpan.textContent = data.mv_views || '--';
+            }
+        })
+        .catch(() => {
+            // data.json이 없거나 오류 시 -- 유지 (조용히 무시)
+        });
+};
+
+// 웹 표시용 포맷: ↑3, ↓3, -
+function formatChartWeb(rank, diff) {
+    if (!rank || rank === 'OUT') return 'OUT';
+    let symbol = '-';
+    if (diff && diff.includes('▲')) symbol = `↑${diff.replace('▲', '')}`;
+    if (diff && diff.includes('▼')) symbol = `↓${diff.replace('▼', '')}`;
+    return `${rank}위 (${symbol})`;
+}
+
+// 카톡용 포맷: ▲3, ▼3, OUT🚨
+function formatChartCopy(rank, diff) {
+    if (!rank || rank === 'OUT') return 'OUT🚨';
+    return `${rank}위 (${diff || '-'})`;
+}
+
+// 리포트 복사 버튼
+window.copyChartReport = function() {
+    const d = window._chartRawData;
+    if (!d) {
+        alert('차트 데이터를 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
+        return;
+    }
+    const now = new Date();
+    const dateStr = `${now.getFullYear()}. ${now.getMonth() + 1}. ${now.getDate()}. ${d.hour}:00`;
+
+    const m100Line = (d.m100_rank && d.m100_rank !== 'OUT')
+        ? `\n⋆ 멜론 HOT100 (발매 100일) : ${formatChartCopy(d.m100_rank, d.m100_diff)}`
+        : '';
+
+    const text = `✨️ WAY 2 U | ${dateStr} ✨️
+
+⋆ 멜론 HOT100 (발매 30일) : ${formatChartCopy(d.m30_rank, d.m30_diff)}${m100Line}
+⋆ 지니 실시간 : ${formatChartCopy(d.genie_rank, d.genie_diff)}
+⋆ 벅스 실시간 : ${formatChartCopy(d.bugs_rank, d.bugs_diff)}
+
+🎬 ${d.mv_views || '--'}`;
+
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            const btn = document.getElementById('chart-copy-btn');
+            if (btn) {
+                const orig = btn.innerHTML;
+                btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 복사됨!`;
+                btn.style.background = '#22c55e';
+                setTimeout(() => {
+                    btn.innerHTML = orig;
+                    btn.style.background = '';
+                }, 2000);
+            }
+        })
+        .catch(() => alert('복사에 실패했습니다. 브라우저 설정을 확인해주세요.'));
+};
+
 
 // --- 모바일 UI 및 라이트박스 제어 로직 ---
 // 햄버거 메뉴 토글
