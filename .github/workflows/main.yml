@@ -1,28 +1,37 @@
 name: Hourly Chart Update
+
 on:
   schedule:
-    # 매시 55분에 미리 실행을 시작하여 정시 정체를 피합니다.
-    - cron: '30 * * * *' 
+    - cron: '30 * * * *'
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
+
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4 playwright
+          python -m pip install --upgrade pip
+          pip install requests playwright
           playwright install chromium
+
       - name: Run collector
         run: python chart.py
-      - name: Commit and Push
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Commit and push changes
         run: |
-          git config --global user.name "ChartBot"
-          git config --global user.email "bot@github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json
-          git commit -m "Update Chart Data" || exit 0
+          git commit -m "Update chart data (Auto)" || exit 0
           git push
