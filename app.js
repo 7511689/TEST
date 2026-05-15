@@ -720,7 +720,10 @@ window.copyChartReport = function() {
 ⋆ 지니 실시간 : ${formatChartCopy(d.genie_rank, d.genie_diff)}
 ⋆ 벅스 실시간 : ${formatChartCopy(d.bugs_rank, d.bugs_diff)}
 
-🎬 ${d.mv_views || '--'}`;
+🎬 ${d.mv_views || '--'}
+
+#FLAREU #플레어유 
+#YOUTH_ERROR #WAY2U`;
 
     navigator.clipboard.writeText(text)
         .then(() => {
