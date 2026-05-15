@@ -1,11 +1,8 @@
 name: Hourly Chart Update
 
 on:
-  schedule:
-    - cron: '30 * * * *'
   workflow_dispatch:
 
-# [추가] 앞선 작업이 끝날 때까지 뒤의 작업은 대기열(Queue)에서 기다립니다.
 concurrency:
   group: chart-update-group
   cancel-in-progress: false
@@ -22,11 +19,27 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-playwright
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-chromium
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests playwright
-          playwright install chromium
+
+      - name: Install Playwright browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: playwright install chromium
 
       - name: Run collector
         run: python chart.py
