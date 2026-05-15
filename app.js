@@ -58,7 +58,7 @@ const downloadContents = {
     melonGift: `<img src="image/download_guide/Melon_Gift_Guide1.jpg" class="guide-img" alt="멜론 선물하기 가이드 이미지">`,
     bugs: `<div class="img-sequence"><img src="image/download_guide/bugs_mobile.png" class="guide-img" alt="벅스다운모바일"><img src="image/download_guide/bugs_pc.png" class="guide-img" alt="벅스다운PC"></div>`,
     genie: `<div class="img-sequence"><img src="image/download_guide/genie_mobile.png" class="guide-img" alt="지니다운모바일"><img src="image/download_guide/genie_pc.png" class="guide-img" alt="지니다운PC"></div>`,
-    mv: `<div class="img-sequence"><img src="image/download_guide/MV_download1.png" class="guide-img" alt="뮤비 다운로드 가이드"></div>`,
+    mv: `<div class="img-sequence"><img src="image/download_guide/MV_download1.png" class="guide-img" alt="뮤비 다운로드 가이드 1"><img src="image/download_guide/MV_download2.png" class="guide-img" alt="뮤비 다운로드 가이드 2" style="margin-top: 10px;"></div>`,
     kakao: `<div class="img-sequence"><img src="image/download_guide/KakaoMusic_Down_Guide.png" class="guide-img" alt="카카오뮤직 다운로드 가이드 이미지"><img src="image/download_guide/KakaoMusic_Down_Guide2.png" class="guide-img" alt="카카오뮤직 다운로드 가이드 2"></div>`,
     vcolor: `<img src="image/download_guide/Vcalling_Guide.png" class="guide-img" alt="V컬러링 가이드 이미지">`
 };
