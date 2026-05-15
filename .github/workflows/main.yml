@@ -13,9 +13,13 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: |
+          pip install requests beautifulsoup4 playwright
+          playwright install chromium
       - name: Run collector
         run: python chart.py
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       - name: Commit and Push
         run: |
           git config --global user.name "ChartBot"
