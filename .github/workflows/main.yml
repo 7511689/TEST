@@ -2,7 +2,7 @@ name: Hourly Chart Update
 on:
   schedule:
     # 매시 55분에 미리 실행을 시작하여 정시 정체를 피합니다.
-    - cron: '55 * * * *' 
+    - cron: '30 * * * *' 
   workflow_dispatch:
 jobs:
   build:
