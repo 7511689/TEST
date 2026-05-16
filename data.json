@@ -1,12 +1,12 @@
 {
-  "hour": "00",
-  "m30_rank": "50",
+  "hour": "01",
+  "m30_rank": "47",
   "m30_diff": "▲3",
-  "m100_rank": "OUT",
-  "m100_diff": "-",
+  "m100_rank": "97",
+  "m100_diff": "NEW",
   "genie_rank": "OUT",
   "genie_diff": "-",
-  "bugs_rank": "2",
-  "bugs_diff": "▲16",
-  "mv_views": "5,253,110"
+  "bugs_rank": "3",
+  "bugs_diff": "▼1",
+  "mv_views": "5,255,945"
 }
