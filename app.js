@@ -649,7 +649,7 @@ window.loadChartData = function() {
             // 멜론 HOT100 (100일)
             const m100el = document.getElementById('chart-m100');
             if (m100el) {
-                if (data.m100_rank === 'OUT') {
+                if (!data.m100_rank || data.m100_rank === 'OUT') {
                     m100el.style.display = 'none';
                 } else {
                     m100el.style.display = '';

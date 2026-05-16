@@ -63,7 +63,10 @@ def main():
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         m30_r, m30_d = get_rank_full_search(page, "https://가이섬.com/chart/melon/hot100-d30")
-        m100_r, m100_d = get_rank_full_search(page, "https://가이섬.com/chart/melon/hot100-d100")
+        # d100은 별도 페이지로 수집 — 이전 페이지 DOM 오염 방지
+        page100 = browser.new_page()
+        m100_r, m100_d = get_rank_full_search(page100, "https://가이섬.com/chart/melon/hot100-d100")
+        page100.close()
         genie_r, genie_d = get_rank_full_search(page, "https://가이섬.com/chart/genie/realtime")
         bugs_r, bugs_d = get_rank_full_search(page, "https://가이섬.com/chart/bugs/realtime")
         browser.close()
