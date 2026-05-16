@@ -17,9 +17,13 @@ def wait_until_top_of_hour():
 
 def get_rank_full_search(page, url, song_title="WAY 2 U"):
     try:
-        page.goto(url, wait_until="networkidle", timeout=60000)
+        page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        # 차트 행이 실제로 렌더링될 때까지만 대기 (최대 10초)
+        try:
+            page.wait_for_selector('tr, li, .chart-item', timeout=10000)
+        except:
+            pass
         for page_num in range(1, 4):
-            page.wait_for_timeout(8000) 
             rows = page.query_selector_all('tr, li, .chart-item')
             for row in rows:
                 inner_html = row.inner_html()
