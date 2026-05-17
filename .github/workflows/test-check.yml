@@ -1,0 +1,51 @@
+name: Chart Test Run
+
+on:
+  workflow_dispatch: # 수동 실행 버튼 활성화
+
+jobs:
+  test_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-playwright
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-chromium
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests playwright
+
+      - name: Install Playwright browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: playwright install chromium
+
+      - name: Tweak code for test and Run
+        run: |
+          # 1. chart.py 안의 곡 제목을 테스트용 곡으로 변경 (기존 파일은 보존됨)
+          sed -i "s/song_title=\"WAY 2 U\"/song_title=\"Love wins all\"/g" chart.py
+          
+          # 2. 25분 넘었을 때 정각까지 대기하는 무한루프 로직 제거 (수동 즉시 테스트용)
+          sed -i "s/if now_check.minute >= 25:/if False:/g" chart.py
+          
+          # 3. 변경된 스크립트 실행
+          python chart.py
+        env:
+          PYTHONUNBUFFERED: "1"
