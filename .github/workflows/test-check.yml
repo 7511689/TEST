@@ -75,17 +75,24 @@ jobs:
                               print(f"🎯 곡 발견! {rank}위 ({diff})", flush=True)
                               return rank, diff
                       
-                      # [수정] 가이섬 하단 페이지 번호 영역(center 태그 내부의 a 태그)을 정확히 타깃팅
-                      next_page_num = page_num + 1
-                      next_btn = page.query_selector(f'center a:text-is("{next_page_num}")')
+                      # [핵심 변경] 링크 중에서 해당 페이지 번호 숫자가 텍스트에 포함된 요소를 유연하게 검색
+                      next_page_num = str(page_num + 1)
                       
-                      if next_btn:
-                          print(f"👉 {next_page_num}페이지로 이동 버튼 클릭", flush=True)
-                          next_btn.click()
-                          time.sleep(3) # 페이지 로딩 안정성 확보
-                      else:
-                          print(f"❌ {next_page_num}페이지 이동 버튼을 찾지 못함", flush=True)
+                      try:
+                          # 하단 번호판 링크 중 다음 페이지 숫자를 가진 요소를 정밀 매칭
+                          next_btn = page.get_by_role("link", name=next_page_num, exact=False).first
+                          
+                          if next_btn and next_btn.is_visible():
+                              print(f"👉 {next_page_num}페이지 이동 버튼 클릭 완료", flush=True)
+                              next_btn.click()
+                              time.sleep(3) # 페이지 렌더링 대기 시간
+                          else:
+                              print(f"❌ {next_page_num}페이지 버튼이 화면에 보이지 않음", flush=True)
+                              break
+                      except Exception as btn_err:
+                          print(f"❌ 버튼 매칭 중 예외 발생: {btn_err}", flush=True)
                           break
+                          
                   return "OUT", "-"
               except Exception as e:
                   print(f"🚨 에러 발생: {e}", flush=True)
