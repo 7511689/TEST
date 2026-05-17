@@ -38,12 +38,11 @@ const streamingContents = {
     bugs: `<div class="img-sequence"><img src="image/streaming_guide/bugs_guide_1.png" class="guide-img" alt="벅스스밍가이드_1"><img src="image/streaming_guide/bugs_guide_2.png" class="guide-img" alt="벅스스밍가이드_2"></div>`,
     genie: `<div class="img-sequence"><img src="image/streaming_guide/genie_guide.png" class="guide-img" alt="지니스밍가이드"><img src="image/streaming_guide/genie_guide_app_setting.png" class="guide-img" alt="지니앱설정"></div>`,
     genieShare: `<div class="genie-share-grid">
-        <a href="https://www.genie.co.kr/5EKID8" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기1</a>
-        <a href="https://www.genie.co.kr/TRIZE8" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기2</a>
-        <a href="https://www.genie.co.kr/8PKUC7" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기3</a>
-        <a href="https://www.genie.co.kr/0NGDH7" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기4</a>
-        <a href="https://www.genie.co.kr/TEB518" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기5</a>
-        <a href="https://www.genie.co.kr/JQ12F1" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기6</a>
+        <a href="http://www.genie.co.kr/CYMT39" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기1</a>
+        <a href="http://www.genie.co.kr/P248Q5" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기2</a>
+        <a href="http://www.genie.co.kr/4CQU39" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기3</a>
+        <a href="http://www.genie.co.kr/XP3ZC8" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기4</a>
+        <a href="http://www.genie.co.kr/SSI2K8" target="_blank" class="btn-primary" style="font-size: 15px; border-radius: 50px; background-color: #5EB0ED; color: #fff; text-decoration: none;">지니 음악나누기 바로가기5</a>
     </div>
     <img src="image/streaming_guide/Genie_Music_Sharing_Guide.png" class="guide-img" alt="지니 음악나누기 가이드 이미지">`,
     flo: `<div class="img-sequence"><img src="image/streaming_guide/flo_guide.png" class="guide-img" alt="플로스밍가이드"><img src="image/streaming_guide/flo_app_setting_guide.png" class="guide-img" alt="플로앱설정"></div>`,
