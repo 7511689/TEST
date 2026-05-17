@@ -40,75 +40,28 @@ jobs:
       - name: Create Fixed Script and Run
         run: |
           cat << 'EOF' > test_chart.py
-          import json
-          import datetime
-          import requests
           import time
           from playwright.sync_api import sync_playwright
-
-          def get_rank_full_search(page, url, song_title="Love wins all"):
-              try:
-                  page.goto(url, wait_until="domcontentloaded", timeout=60000)
-                  
-                  for page_num in range(1, 4):
-                      print(f" 현재 {page_num}페이지 검색 중...", flush=True)
-                      page.wait_for_selector('tr', timeout=10000)
-                      rows = page.query_selector_all('tr')
-                      
-                      for row in rows:
-                          inner_text = row.inner_text()
-                          if song_title in inner_text:
-                              parts = [p.strip() for p in inner_text.split('\n') if p.strip()]
-                              rank = "".join(filter(str.isdigit, parts[0])) if parts else "OUT"
-                              
-                              inner_html = row.inner_html()
-                              diff = "-"
-                              if '↑' in inner_html or 'up' in inner_html.lower() or 'ico_up' in inner_html or 'txt_up' in inner_html:
-                                  val = "".join(filter(str.isdigit, parts[1])) if len(parts) > 1 else ""
-                                  diff = f"▲{val}" if val else "▲"
-                              elif '↓' in inner_html or 'down' in inner_html.lower() or 'ico_down' in inner_html or 'txt_down' in inner_html:
-                                  val = "".join(filter(str.isdigit, parts[1])) if len(parts) > 1 else ""
-                                  diff = f"▼{val}" if val else "▼"
-                              elif 'NEW' in inner_html.upper() or 'ico_new' in inner_html:
-                                  diff = "NEW"
-                              
-                              print(f"🎯 곡 발견! {rank}위 ({diff})", flush=True)
-                              return rank, diff
-                      
-                      next_page_num = page_num + 1
-                      # [확정] 대괄호 텍스트 무시하고 href 주소 구조로 버튼 정확히 매칭
-                      next_btn = page.query_selector(f'a[href*="page={next_page_num}"]')
-                      
-                      if next_btn:
-                          # 클릭 전 현재 1등 곡 텍스트를 기억
-                          first_row = page.query_selector('tr')
-                          old_text = first_row.inner_text() if first_row else ""
-                          
-                          print(f"👉 [확인] page={next_page_num} 버튼 발견! 클릭합니다.", flush=True)
-                          next_btn.click()
-                          
-                          # 첫 번째 행의 텍스트가 다음 페이지 데이터로 바뀔 때까지 대기
-                          try:
-                              page.wait_for_function(
-                                  f"() => document.querySelector('tr') && document.querySelector('tr').innerText !== `{old_text}`",
-                                  timeout=5000
-                              )
-                              time.sleep(1) 
-                          except:
-                              print(f"⚠️ {next_page_num}페이지 데이터 전환 대기 초과", flush=True)
-                      else:
-                          print(f"❌ {next_page_num}페이지 버튼을 찾지 못함", flush=True)
-                          break
-                  return "OUT", "-"
-              except Exception as e:
-                  print(f"🚨 에러 발생: {e}", flush=True)
-                  return "OUT", "-"
 
           with sync_playwright() as p:
               browser = p.chromium.launch(headless=True)
               page = browser.new_page()
-              print("=== 지니 실시간 테스트 ===", flush=True)
-              genie_r, genie_d = get_rank_full_search(page, "https://가이섬.com/chart/genie/realtime")
+              
+              print("🔍 가이섬 지니 페이지 접속 중...", flush=True)
+              page.goto("https://가이섬.com/chart/genie/realtime", wait_until="domcontentloaded", timeout=60000)
+              page.wait_for_selector('tr', timeout=10000)
+              
+              print("\n================ [ 가이섬 하단 번호판 HTML 소스 ] ================", flush=True)
+              # 하단 center 태그 내부의 전체 소스코드를 가져와 출력합니다.
+              center_element = page.query_selector('center')
+              if center_element:
+                  print(center_element.inner_html(), flush=True)
+              else:
+                  # center 태그가 없을 경우 body 전체에서 찾기 위해 전체 출력
+                  print("⚠️ center 태그를 찾지 못해 전체 body 소스를 일부 출력합니다.", flush=True)
+                  print(page.content()[-2000:], flush=True) # 하단부 위주로 출력
+              print("==================================================================\n", flush=True)
+              
               browser.close()
           EOF
           
