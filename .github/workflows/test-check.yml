@@ -1,7 +1,7 @@
 name: Chart Test Run
 
 on:
-  workflow_dispatch: # 수동 실행 버튼 활성화
+  workflow_dispatch:
 
 jobs:
   test_build:
@@ -37,15 +37,68 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: playwright install chromium
 
-      - name: Tweak code for test and Run
+      - name: Create Fixed Script and Run
         run: |
-          # 1. chart.py 안의 곡 제목을 테스트용 곡으로 변경 (기존 파일은 보존됨)
-          sed -i "s/song_title=\"WAY 2 U\"/song_title=\"Love wins all\"/g" chart.py
+          cat << 'EOF' > test_chart.py
+          import json
+          import datetime
+          import requests
+          import time
+          from playwright.sync_api import sync_playwright
+
+          def get_rank_full_search(page, url, song_title="Love wins all"):
+              try:
+                  page.goto(url, wait_until="domcontentloaded", timeout=60000)
+                  
+                  for page_num in range(1, 4):
+                      print(f" 현재 {page_num}페이지 검색 중...", flush=True)
+                      page.wait_for_selector('tr', timeout=10000)
+                      rows = page.query_selector_all('tr')
+                      
+                      for row in rows:
+                          inner_text = row.inner_text()
+                          if song_title in inner_text:
+                              parts = [p.strip() for p in inner_text.split('\n') if p.strip()]
+                              rank = "".join(filter(str.isdigit, parts[0])) if parts else "OUT"
+                              
+                              inner_html = row.inner_html()
+                              diff = "-"
+                              if '↑' in inner_html or 'up' in inner_html.lower() or 'ico_up' in inner_html or 'txt_up' in inner_html:
+                                  val = "".join(filter(str.isdigit, parts[1])) if len(parts) > 1 else ""
+                                  diff = f"▲{val}" if val else "▲"
+                              elif '↓' in inner_html or 'down' in inner_html.lower() or 'ico_down' in inner_html or 'txt_down' in inner_html:
+                                  val = "".join(filter(str.isdigit, parts[1])) if len(parts) > 1 else ""
+                                  diff = f"▼{val}" if val else "▼"
+                              elif 'NEW' in inner_html.upper() or 'ico_new' in inner_html:
+                                  diff = "NEW"
+                              
+                              print(f"🎯 곡 발견! {rank}위 ({diff})", flush=True)
+                              return rank, diff
+                      
+                      # [수정] 가이섬 하단 페이지 번호 영역(center 태그 내부의 a 태그)을 정확히 타깃팅
+                      next_page_num = page_num + 1
+                      next_btn = page.query_selector(f'center a:text-is("{next_page_num}")')
+                      
+                      if next_btn:
+                          print(f"👉 {next_page_num}페이지로 이동 버튼 클릭", flush=True)
+                          next_btn.click()
+                          time.sleep(3) # 페이지 로딩 안정성 확보
+                      else:
+                          print(f"❌ {next_page_num}페이지 이동 버튼을 찾지 못함", flush=True)
+                          break
+                  return "OUT", "-"
+              except Exception as e:
+                  print(f"🚨 에러 발생: {e}", flush=True)
+                  return "OUT", "-"
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              page = browser.new_page()
+              print("=== 지니 실시간 테스트 ===", flush=True)
+              genie_r, genie_d = get_rank_full_search(page, "https://가이섬.com/chart/genie/realtime")
+              browser.close()
+          EOF
           
-          # 2. 25분 넘었을 때 정각까지 대기하는 무한루프 로직 제거 (수동 즉시 테스트용)
-          sed -i "s/if now_check.minute >= 25:/if False:/g" chart.py
-          
-          # 3. 변경된 스크립트 실행
-          python chart.py
+          python test_chart.py
         env:
           PYTHONUNBUFFERED: "1"
