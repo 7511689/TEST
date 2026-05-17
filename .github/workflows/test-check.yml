@@ -28,7 +28,7 @@ jobs:
           import json
           import re
 
-          def debug_json_structure(url):
+          def debug_raw_string_data(url):
               headers = {
                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
               }
@@ -58,11 +58,11 @@ jobs:
                           except:
                               pass
 
-                  print("\n================ [ 가이섬 실제 JSON 데이터 구조 ] ================", flush=True)
+                  print("\n================ [ 가이섬 실제 원본 문자열 추출 ] ================", flush=True)
                   if chart_data and len(chart_data) > 0:
-                      # 첫 번째 데이터가 어떻게 생겼는지 가공 없이 그대로 날것으로 출력합니다.
-                      print(f"📋 데이터 타입: {type(chart_data[0])}", flush=True)
-                      print(json.dumps(chart_data[0], ensure_ascii=False, indent=2), flush=True)
+                      # 상위 3개의 아이템이 어떤 문자열로 구성되어 있는지 있는 그대로 출력
+                      for i in range(min(3, len(chart_data))):
+                          print(f"📋 [{i+1}번 데이터]: {chart_data[i]}", flush=True)
                   else:
                       print("❌ 데이터를 가져오지 못했습니다.", flush=True)
                   print("==================================================================\n", flush=True)
@@ -71,7 +71,7 @@ jobs:
                   print(f"🚨 에러 발생: {e}", flush=True)
 
           target_url = "https://가이섬.com/chart/genie/realtime/20260517/22"
-          debug_json_structure(target_url)
+          debug_raw_string_data(target_url)
           EOF
           
           python test_chart.py
