@@ -15,54 +15,101 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Cache pip dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-playwright
-
-      - name: Cache Playwright browsers
-        uses: actions/cache@v3
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-chromium
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests playwright
-
-      - name: Install Playwright browsers
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: playwright install chromium
+          pip install requests beautifulsoup4
 
       - name: Create Fixed Script and Run
         run: |
           cat << 'EOF' > test_chart.py
-          import time
-          from playwright.sync_api import sync_playwright
+          import requests
+          from bs4 import BeautifulSoup
+          import json
+          import re
 
-          with sync_playwright() as p:
-              browser = p.chromium.launch(headless=True)
-              page = browser.new_page()
-              
-              print("🔍 가이섬 지니 페이지 접속 중...", flush=True)
-              page.goto("https://가이섬.com/chart/genie/realtime", wait_until="domcontentloaded", timeout=60000)
-              page.wait_for_selector('tr', timeout=10000)
-              
-              print("\n================ [ 가이섬 하단 번호판 HTML 소스 ] ================", flush=True)
-              # 하단 center 태그 내부의 전체 소스코드를 가져와 출력합니다.
-              center_element = page.query_selector('center')
-              if center_element:
-                  print(center_element.inner_html(), flush=True)
-              else:
-                  # center 태그가 없을 경우 body 전체에서 찾기 위해 전체 출력
-                  print("⚠️ center 태그를 찾지 못해 전체 body 소스를 일부 출력합니다.", flush=True)
-                  print(page.content()[-2000:], flush=True) # 하단부 위주로 출력
-              print("==================================================================\n", flush=True)
-              
-              browser.close()
+          def get_rank_from_json_dump(url, song_title="Love wins all"):
+              headers = {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+              }
+              try:
+                  print(f"📡 가이섬 소스코드 직접 타격 중: {url}", flush=True)
+                  res = requests.get(url, headers=headers, timeout=30)
+                  if res.status_code != 200:
+                      print(f"❌ 접속 실패 (상태코드: {res.status_code})", flush=True)
+                      return "OUT", "-"
+
+                  soup = BeautifulSoup(res.text, 'html.parser')
+                  
+                  # 가이섬 내부 자바스크립트 빌드 데이터 데이터가 들어있는 스크립트 태그 타격
+                  script_tags = soup.find_all('script')
+                  
+                  chart_data = None
+                  for script in script_tags:
+                      if script.string and "pageProps" in script.string:
+                          # 스크립트 내부의 JSON 문자열 추출
+                          script_content = script.string
+                          match = re.search(r'\{.*\}', script_content)
+                          if match:
+                              try:
+                                  raw_json = json.loads(match.group(0))
+                                  # 가이섬 넥스트js 고유 데이터 구조 진입
+                                  chart_data = raw_json.get('props', {}).get('pageProps', {}).get('data', {}).get('chart', [])
+                                  if chart_data:
+                                      break
+                              except:
+                                  continue
+
+                  # 만약 스크립트 태그 파싱에 실패했다면, 단순 텍스트 정규식으로 통째로 추출 시도
+                  if not chart_data:
+                      match = re.search(r'"chart"\s*:\s*(\[.*?\])', res.text, re.DOTALL)
+                      if match:
+                          try:
+                              chart_data = json.loads(match.group(1))
+                          except:
+                              pass
+
+                  if not chart_data:
+                      print("❌ 소스코드 내에서 차트 JSON 데이터를 추출하지 못했습니다.", flush=True)
+                      return "OUT", "-"
+
+                  print(f"✅ 총 {len(chart_data)}개의 전체 순위 데이터를 성공적으로 확보했습니다.", flush=True)
+
+                  # 1위부터 250위까지 루프를 돌며 타깃 곡 검색 (페이지네이션 필요 없음)
+                  for item in chart_data:
+                      # 가이섬 데이터 필드명 매칭 (사이트 구조에 맞게 유연하게 처리)
+                      title = item.get('title', item.get('song', item.get('name', '')))
+                      if song_title.lower() in title.lower():
+                          rank = str(item.get('rank', 'OUT'))
+                          
+                          # 등락 표시 처리
+                          diff_type = item.get('diff_type', '') # up, down, steady 등
+                          diff_val = str(item.get('diff', ''))
+                          if diff_val == '0' or not diff_val:
+                              diff = "-"
+                          elif 'up' in diff_type.lower() or '▲' in diff_type:
+                              diff = f"▲{diff_val}"
+                          elif 'down' in diff_type.lower() or '▼' in diff_type:
+                              diff = f"▼{diff_val}"
+                          else:
+                              diff = "-"
+                              
+                          print(f"🎯 [대성공] 곡 발견! {rank}위 ({diff})", flush=True)
+                          return rank, diff
+
+                  print(f"⏭️ 1위부터 250위 전체 데이터 안에 '{song_title}' 곡이 없습니다.", flush=True)
+                  return "OUT", "-"
+
+              except Exception as e:
+                  print(f"🚨 에러 발생: {e}", flush=True)
+                  return "OUT", "-"
+
+          print("=== 지니 1위~250위 통째로 파싱 테스트 ===", flush=True)
+          # 아침에 주신 실전 날짜 주소 타격
+          target_url = "https://가이섬.com/chart/genie/realtime/20260517/22"
+          
+          # 100위 밖에 있는 테스트 곡으로 검증
+          rank, diff = get_rank_from_json_dump(target_url, "Love wins all")
           EOF
           
           python test_chart.py
