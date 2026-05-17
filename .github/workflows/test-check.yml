@@ -28,46 +28,68 @@ jobs:
           import json
           import re
 
-          def dump_full_chart_string(url):
+          def verify_genie_chart(url, target_song="Love wins all"):
               headers = {
                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
               }
               try:
+                  print(f"📡 정답지 기반 가이섬 데이터 로드 중...", flush=True)
                   res = requests.get(url, headers=headers, timeout=30)
                   soup = BeautifulSoup(res.text, 'html.parser')
-                  script_tags = soup.find_all('script')
+                  script_tag = soup.find('script', id='__NEXT_DATA__')
                   
-                  chart_data = None
-                  for script in script_tags:
-                      if script.string and "pageProps" in script.string:
-                          match = re.search(r'\{.*\}', script.string)
-                          if match:
-                              try:
-                                  raw_json = json.loads(match.group(0))
-                                  chart_data = raw_json.get('props', {}).get('pageProps', {}).get('data', {}).get('chart', '')
-                                  if chart_data:
-                                      break
-                              except:
-                                  continue
+                  if not script_tag:
+                      print("❌ 소스코드 내에서 __NEXT_DATA__ 태그를 찾지 못했습니다.", flush=True)
+                      return
 
-                  if not chart_data:
-                      match = re.search(r'"chart"\s*:\s*"([^"]*)"', res.text)
-                      if match:
-                          chart_data = match.group(1)
+                  raw_json = json.loads(script_tag.string)
+                  
+                  # [정답지 팩트 검증] 진짜 1위~250위 통배열 데이터 박스 진입
+                  chart_list = raw_json.get('props', {}).get('pageProps', {}).get('data', {}).get('data', [])
+                  
+                  print(f"✅ 가이섬 내부 데이터 박스 진입 성공 (총 {len(chart_list)}개 순위 확보)", flush=True)
+                  print("================================================================", flush=True)
 
-                  print("\n================ [ 가이섬 데이터 통문자열 원본 ] ================", flush=True)
-                  if chart_data:
-                      # 쪼개지 않고 확보한 텍스트 전체를 화면에 그대로 뿌립니다.
-                      print(chart_data, flush=True)
-                  else:
-                      print("❌ 텍스트 데이터를 추출하지 못했습니다.", flush=True)
-                  print("==================================================================\n", flush=True)
+                  for item in chart_list:
+                      # 정답지 JSON 계층 구조 정밀 타격
+                      ranking = item.get('ranking', 'OUT')
+                      previous = item.get('previous', '-')
+                      song_obj = item.get('song', {})
+                      song_name = song_obj.get('name', '')
+                      
+                      # 아티스트 리스트 추출
+                      artists = song_obj.get('artists', [])
+                      artist_name = artists[0].get('name', '') if artists else ''
+                      
+                      # 타깃 곡 검색 (대소문자 구분 없이)
+                      if target_song.lower() in song_name.lower():
+                          # 등락 계산
+                          if previous == '-':
+                              diff = "-"
+                          else:
+                              diff_num = int(previous) - int(ranking)
+                              if diff_num > 0:
+                                  diff = f"▲{diff_num}"
+                              elif diff_num < 0:
+                                  diff = f"▼{abs(diff_num)}"
+                              else:
+                                  diff = "-"
+                                  
+                          print(f"🎯 [테스트 결과] 곡 발견 완료!", flush=True)
+                          print(f"   ▶ 순위: {ranking}위 ({diff})", flush=True)
+                          print(f"   ▶ 곡명: {song_name}", flush=True)
+                          print(f"   ▶ 가수: {artist_name}", flush=True)
+                          print("================================================================", flush=True)
+                          return
+                          
+                  print(f"⏭️ 250위 전체 데이터를 뒤졌으나 '{target_song}' 곡을 찾지 못했습니다.", flush=True)
+                  print("================================================================", flush=True)
 
               except Exception as e:
-                  print(f"🚨 에러 발생: {e}", flush=True)
+                  print(f"🚨 테스트 중 예외 발생: {e}", flush=True)
 
           target_url = "https://가이섬.com/chart/genie/realtime/20260517/22"
-          dump_full_chart_string(target_url)
+          verify_genie_chart(target_url, "Love wins all")
           EOF
           
           python test_chart.py
