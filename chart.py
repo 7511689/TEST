@@ -17,12 +17,67 @@ def wait_until_top_of_hour():
 
 def get_rank_full_search(page, url, song_title="WAY 2 U"):
     try:
+        # 페이지 접속
         page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        
+        # ------------------------------------------------------------------
+        # 🔥 [안전장치] 가이섬 Next.js 고속 JSON 파서 구역 (지니 250위 타격용)
+        # ------------------------------------------------------------------
+        try:
+            # 브라우저 내부에 로드된 __NEXT_DATA__ 태그를 실시간 가로챕니다.
+            next_data_element = page.locator('#__NEXT_DATA__')
+            if next_data_element.count() > 0:
+                script_text = next_data_element.inner_text()
+                raw_json = json.loads(script_text)
+                
+                # 가이섬 1위~250위 통배열 진짜 진입 경로
+                chart_list = raw_json.get('props', {}).get('pageProps', {}).get('data', {}).get('data', [])
+                
+                if isinstance(chart_list, list) and len(chart_list) > 0:
+                    for item in chart_list:
+                        song_obj = item.get('song', {})
+                        song_name = song_obj.get('name', '')
+                        
+                        # 대소문자 구분 없이 정확하게 노래 매칭
+                        if song_title.lower() in song_name.lower():
+                            ranking = item.get('ranking', 'OUT')
+                            previous = item.get('previous')
+                            
+                            rank = str(ranking)
+                            diff = "-"
+                            
+                            # 기존 수집기 시스템과 100% 일치하는 등락(diff) 문자열 가공 규격
+                            if previous is not None and previous != '-':
+                                try:
+                                    p_num = int(previous)
+                                    r_num = int(ranking)
+                                    if p_num == 0:  # 차트 신규 진입인 경우
+                                        diff = "NEW"
+                                    else:
+                                        diff_num = p_num - r_num
+                                        if diff_num > 0:
+                                            diff = f"▲{diff_num}"
+                                        elif diff_num < 0:
+                                            diff = f"▼{abs(diff_num)}"
+                                        else:
+                                            diff = "-"
+                                except:
+                                    pass
+                            
+                            print(f"🎯 [가이섬 덤프 가로채기 성공] {song_name} -> {rank}위 ({diff})", flush=True)
+                            return rank, diff
+        except Exception as json_err:
+            # 주소가 다른 멜론/벅스이거나 에러 발생 시, 기존 UI 스크래핑 코드로 자동 대체(Fallback)
+            print(f"⚠️ JSON 사전 파싱 건너뜀 (기존 UI 크롤링으로 자동 대체): {json_err}", flush=True)
+        # ------------------------------------------------------------------
+
         # 차트 행이 실제로 렌더링될 때까지만 대기 (최대 10초)
         try:
             page.wait_for_selector('tr, li, .chart-item', timeout=10000)
         except:
             pass
+            
+        # 기존의 백업 스크래핑 로직 (멜론, 벅스 등은 이 로직을 통해 기존과 동일하게 수집됩니다)
         for page_num in range(1, 4):
             rows = page.query_selector_all('tr, li, .chart-item')
             for row in rows:
