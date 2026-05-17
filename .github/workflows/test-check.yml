@@ -75,24 +75,17 @@ jobs:
                               print(f"🎯 곡 발견! {rank}위 ({diff})", flush=True)
                               return rank, diff
                       
-                      # [핵심 변경] 링크 중에서 해당 페이지 번호 숫자가 텍스트에 포함된 요소를 유연하게 검색
-                      next_page_num = str(page_num + 1)
+                      # [확정 코드] 가이섬의 href 주소(?page=2)를 정밀 타격
+                      next_page_num = page_num + 1
+                      next_btn = page.query_selector(f'a[href*="page={next_page_num}"]')
                       
-                      try:
-                          # 하단 번호판 링크 중 다음 페이지 숫자를 가진 요소를 정밀 매칭
-                          next_btn = page.get_by_role("link", name=next_page_num, exact=False).first
-                          
-                          if next_btn and next_btn.is_visible():
-                              print(f"👉 {next_page_num}페이지 이동 버튼 클릭 완료", flush=True)
-                              next_btn.click()
-                              time.sleep(3) # 페이지 렌더링 대기 시간
-                          else:
-                              print(f"❌ {next_page_num}페이지 버튼이 화면에 보이지 않음", flush=True)
-                              break
-                      except Exception as btn_err:
-                          print(f"❌ 버튼 매칭 중 예외 발생: {btn_err}", flush=True)
+                      if next_btn:
+                          print(f"👉 [확인] page={next_page_num} 버튼 발견! 클릭합니다.", flush=True)
+                          next_btn.click()
+                          time.sleep(3) # 페이지 렌더링 확정 대기
+                      else:
+                          print(f"❌ [확인] page={next_page_num} 링크를 화면에서 찾지 못함", flush=True)
                           break
-                          
                   return "OUT", "-"
               except Exception as e:
                   print(f"🚨 에러 발생: {e}", flush=True)
