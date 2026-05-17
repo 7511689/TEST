@@ -28,7 +28,7 @@ jobs:
           import json
           import re
 
-          def debug_raw_string_data(url):
+          def dump_full_chart_string(url):
               headers = {
                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
               }
@@ -44,34 +44,30 @@ jobs:
                           if match:
                               try:
                                   raw_json = json.loads(match.group(0))
-                                  chart_data = raw_json.get('props', {}).get('pageProps', {}).get('data', {}).get('chart', [])
+                                  chart_data = raw_json.get('props', {}).get('pageProps', {}).get('data', {}).get('chart', '')
                                   if chart_data:
                                       break
                               except:
                                   continue
 
                   if not chart_data:
-                      match = re.search(r'"chart"\s*:\s*(\[.*?\])', res.text, re.DOTALL)
+                      match = re.search(r'"chart"\s*:\s*"([^"]*)"', res.text)
                       if match:
-                          try:
-                              chart_data = json.loads(match.group(1))
-                          except:
-                              pass
+                          chart_data = match.group(1)
 
-                  print("\n================ [ 가이섬 실제 원본 문자열 추출 ] ================", flush=True)
-                  if chart_data and len(chart_data) > 0:
-                      # 상위 3개의 아이템이 어떤 문자열로 구성되어 있는지 있는 그대로 출력
-                      for i in range(min(3, len(chart_data))):
-                          print(f"📋 [{i+1}번 데이터]: {chart_data[i]}", flush=True)
+                  print("\n================ [ 가이섬 데이터 통문자열 원본 ] ================", flush=True)
+                  if chart_data:
+                      # 쪼개지 않고 확보한 텍스트 전체를 화면에 그대로 뿌립니다.
+                      print(chart_data, flush=True)
                   else:
-                      print("❌ 데이터를 가져오지 못했습니다.", flush=True)
+                      print("❌ 텍스트 데이터를 추출하지 못했습니다.", flush=True)
                   print("==================================================================\n", flush=True)
 
               except Exception as e:
                   print(f"🚨 에러 발생: {e}", flush=True)
 
           target_url = "https://가이섬.com/chart/genie/realtime/20260517/22"
-          debug_raw_string_data(target_url)
+          dump_full_chart_string(target_url)
           EOF
           
           python test_chart.py
