@@ -1,12 +1,12 @@
 {
-  "hour": "00",
-  "m30_rank": "46",
-  "m30_diff": "▲7",
-  "m100_rank": "94",
-  "m100_diff": "NEW",
-  "genie_rank": "OUT",
-  "genie_diff": "-",
-  "bugs_rank": "4",
-  "bugs_diff": "▲4",
-  "mv_views": "5,287,896"
+  "hour": "01",
+  "m30_rank": "45",
+  "m30_diff": "▲1",
+  "m100_rank": "86",
+  "m100_diff": "▲8",
+  "genie_rank": "239",
+  "genie_diff": "NEW",
+  "bugs_rank": "5",
+  "bugs_diff": "▼1",
+  "mv_views": "5,290,400"
 }
