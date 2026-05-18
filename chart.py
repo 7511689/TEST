@@ -21,16 +21,14 @@ def get_rank_full_search(page, url, song_title="WAY 2 U"):
         page.goto(url, wait_until="domcontentloaded", timeout=60000)
         
         # ------------------------------------------------------------------
-        # 🔥 [안전장치] 가이섬 Next.js 고속 JSON 파서 구역 (지니 250위 타격용)
+        # 🔥 가이섬 Next.js 고속 JSON 파서 구역 (지니 차트 오류 우회용)
         # ------------------------------------------------------------------
         try:
-            # 브라우저 내부에 로드된 __NEXT_DATA__ 태그를 실시간 가로챕니다.
             next_data_element = page.locator('#__NEXT_DATA__')
             if next_data_element.count() > 0:
                 script_text = next_data_element.inner_text()
                 raw_json = json.loads(script_text)
                 
-                # 가이섬 1위~250위 통배열 진짜 진입 경로
                 chart_list = raw_json.get('props', {}).get('pageProps', {}).get('data', {}).get('data', [])
                 
                 if isinstance(chart_list, list) and len(chart_list) > 0:
@@ -38,7 +36,6 @@ def get_rank_full_search(page, url, song_title="WAY 2 U"):
                         song_obj = item.get('song', {})
                         song_name = song_obj.get('name', '')
                         
-                        # 대소문자 구분 없이 정확하게 노래 매칭
                         if song_title.lower() in song_name.lower():
                             ranking = item.get('ranking', 'OUT')
                             previous = item.get('previous')
@@ -46,12 +43,11 @@ def get_rank_full_search(page, url, song_title="WAY 2 U"):
                             rank = str(ranking)
                             diff = "-"
                             
-                            # 기존 수집기 시스템과 100% 일치하는 등락(diff) 문자열 가공 규격
                             if previous is not None and previous != '-':
                                 try:
                                     p_num = int(previous)
                                     r_num = int(ranking)
-                                    if p_num == 0:  # 차트 신규 진입인 경우
+                                    if p_num == 0:
                                         diff = "NEW"
                                     else:
                                         diff_num = p_num - r_num
@@ -67,7 +63,6 @@ def get_rank_full_search(page, url, song_title="WAY 2 U"):
                             print(f"🎯 [가이섬 덤프 가로채기 성공] {song_name} -> {rank}위 ({diff})", flush=True)
                             return rank, diff
         except Exception as json_err:
-            # 주소가 다른 멜론/벅스이거나 에러 발생 시, 기존 UI 스크래핑 코드로 자동 대체(Fallback)
             print(f"⚠️ JSON 사전 파싱 건너뜀 (기존 UI 크롤링으로 자동 대체): {json_err}", flush=True)
         # ------------------------------------------------------------------
 
@@ -77,7 +72,7 @@ def get_rank_full_search(page, url, song_title="WAY 2 U"):
         except:
             pass
             
-        # 기존의 백업 스크래핑 로직 (멜론, 벅스 등은 이 로직을 통해 기존과 동일하게 수집됩니다)
+        # 기존의 백업 스크래핑 로직
         for page_num in range(1, 4):
             rows = page.query_selector_all('tr, li, .chart-item')
             for row in rows:
@@ -122,11 +117,14 @@ def main():
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         m30_r, m30_d = get_rank_full_search(page, "https://가이섬.com/chart/melon/hot100-d30")
-        # d100은 별도 페이지로 수집 — 이전 페이지 DOM 오염 방지
+        
         page100 = browser.new_page()
         m100_r, m100_d = get_rank_full_search(page100, "https://가이섬.com/chart/melon/hot100-d100")
         page100.close()
+        
         genie_r, genie_d = get_rank_full_search(page, "https://가이섬.com/chart/genie/realtime")
+        
+        # ✨ [버그 수정 완료] data_bugs_r 오타를 원래 규격인 bugs_r로 완벽 교체!
         bugs_r, bugs_d = get_rank_full_search(page, "https://가이섬.com/chart/bugs/realtime")
         browser.close()
 
