@@ -1,51 +1,43 @@
 name: Hourly Chart Update
-
 on:
   workflow_dispatch:
-
 concurrency:
   group: chart-update-group
   cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-
       - name: Cache pip dependencies
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-playwright
-
       - name: Cache Playwright browsers
         uses: actions/cache@v3
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-chromium
-
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests playwright
-
       - name: Install Playwright browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: playwright install chromium
-
+        run: playwright install chromium --with-deps
       - name: Run collector
         run: python chart.py
         env:
           PYTHONUNBUFFERED: "1"
-
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
