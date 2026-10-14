@@ -84,57 +84,9 @@ const pages = {
         </div>
         <div class="youtube-mv" style="border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
             <!-- 하단의 src="https://www.youtube.com/embed/영상ID" 부분의 영상ID를 실제 뮤비 ID로 바꿔주시면 됩니다. -->
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dyxmlYXdxUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pPjVu5ovYaM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display: block;"></iframe>
         </div>
 
-        <!-- 실시간 차트 섹션 -->
-        <div class="chart-section">
-            <div class="chart-header">
-                <span class="chart-badge">실시간 차트</span>
-                <button class="chart-copy-btn" id="chart-copy-btn" onclick="copyChartReport()" title="리포트 복사">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                </button>
-            </div>
-            <div class="chart-cards">
-                <div class="chart-card chart-melon">
-                    <div class="chart-card-header">
-                        <span class="chart-platform-name">Melon</span>
-                        <span class="chart-update-time" id="chart-time-m">-- 기준</span>
-                    </div>
-                    <div class="chart-card-body">
-                        <p class="chart-rank-row" id="chart-m30">HOT100 (30일) <span class="chart-rank-value">--</span></p>
-                        <p class="chart-rank-row" id="chart-m100">HOT100 (100일) <span class="chart-rank-value">--</span></p>
-                    </div>
-                </div>
-                <div class="chart-card chart-genie">
-                    <div class="chart-card-header">
-                        <span class="chart-platform-name">Genie</span>
-                        <span class="chart-update-time" id="chart-time-g">-- 기준</span>
-                    </div>
-                    <div class="chart-card-body">
-                        <p class="chart-rank-row" id="chart-genie">실시간 차트 <span class="chart-rank-value">--</span></p>
-                    </div>
-                </div>
-                <div class="chart-card chart-bugs">
-                    <div class="chart-card-header">
-                        <span class="chart-platform-name">Bugs</span>
-                        <span class="chart-update-time" id="chart-time-b">-- 기준</span>
-                    </div>
-                    <div class="chart-card-body">
-                        <p class="chart-rank-row" id="chart-bugs">실시간 차트 <span class="chart-rank-value">--</span></p>
-                    </div>
-                </div>
-                <div class="chart-card chart-youtube">
-                    <div class="chart-card-header">
-                        <span class="chart-platform-name">YouTube MV</span>
-                        <span class="chart-update-time" id="chart-time-y">-- 기준</span>
-                    </div>
-                    <div class="chart-card-body">
-                        <p class="chart-rank-row" id="chart-mv">조회수 <span class="chart-rank-value">--</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="carousel-container" id="main-carousel">
             <div class="carousel-track" id="carousel-track">
@@ -599,7 +551,6 @@ function renderPage(pageId) {
     
     if (pageId === 'home') {
         startCarousel();
-        loadChartData();
     }
 }
 
